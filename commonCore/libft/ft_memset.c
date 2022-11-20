@@ -6,13 +6,13 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:12:32 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/17 16:03:46 by fbelfort         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:12:06 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    *ft_memset(void *p, int value, size_t count)
+void	*ft_memset(void *p, int value, size_t count)
 {
 	int		i;
 	char	*ptr_p;

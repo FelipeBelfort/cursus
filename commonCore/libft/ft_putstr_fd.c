@@ -6,7 +6,20 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:03:00 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/17 16:03:46 by fbelfort         ###   ########.fr       */
+/*   Updated: 2022/11/20 16:12:29 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
+}
