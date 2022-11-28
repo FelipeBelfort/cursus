@@ -3,36 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 15:55:48 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/20 16:11:53 by fbelfort         ###   ########.fr       */
+/*   Updated: 2022/11/28 21:34:50 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, void *src, size_t len)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	char	*str_src;
 	char	*str_dst;
-	char	*str_tmp;
-	size_t	i;
 
-	i = 0;
-	str_dst = (char *) dst;
 	str_src = (char *) src;
-	str_tmp = ft_calloc(len, sizeof(str_tmp));
-	while (i < len)
+	str_dst = (char *) dst;
+	if (!str_src && !str_dst && len)
+		return (NULL);
+	if ((str_src < str_dst) && (str_dst < str_src + len))
 	{
-		str_tmp[i] = str_src[i];
-		i++;
+		while (len--)
+			str_dst[len] = str_src[len];
 	}
-	i = 0;
-	while (i < len)
+	else
 	{
-		str_dst[i] = str_tmp[i];
-		i++;
+		while (len--)
+			*str_dst++ = *str_src++;
 	}
 	return (dst);
 }

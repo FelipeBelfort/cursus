@@ -3,51 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:48:39 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/20 17:07:14 by fbelfort         ###   ########.fr       */
+/*   Updated: 2022/11/28 13:39:50 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_find_trimstart(char const *s1, char const *set, int len)
+static int	ft_istotrim(char c, char const *set)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (s1[i])
+	while (set[i])
 	{
-		if (j == len)
-			j = 0;
-		if (s1[i] != set[j])
-			break ;
+		if (c == set[i])
+			return (1);
 		i++;
-		j++;
 	}
-	return (i);
-}
-
-static int	ft_find_trimend(char const *s1, char const *set, int len)
-{
-	int	i;
-	int	j;
-
-	i = ft_strlen((char *)s1);
-	j = len;
-	while (i > 0)
-	{
-		if (j == 0)
-			j = len;
-		if (s1[i] != set[j])
-			break ;
-		i--;
-		j--;
-	}
-	return (i);
+	return (0);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -55,11 +31,17 @@ char	*ft_strtrim(char const *s1, char const *set)
 	char	*strtrimmed;
 	int		start_i;
 	int		end_i;
-	int		len;
 
-	len = ft_strlen((char *)set);
-	end_i = ft_find_trimend(s1, set, len);
-	start_i = ft_find_trimstart(s1, set, len);
-	strtrimmed = ft_substr(s1, start_i, end_i);
+	end_i = ft_strlen(s1) - 1;
+	start_i = 0;
+	if (set == s1 || !s1 || end_i < 1)
+		return (ft_calloc(1, sizeof(char)));
+	if (!set)
+		return ((char *) s1);
+	while (ft_istotrim(s1[start_i], set))
+		start_i++;
+	while (ft_istotrim(s1[end_i], set))
+		end_i--;
+	strtrimmed = ft_substr(s1, start_i, end_i - start_i + 1);
 	return (strtrimmed);
 }

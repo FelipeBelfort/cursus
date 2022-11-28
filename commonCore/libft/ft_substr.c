@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 12:22:46 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/20 16:28:35 by fbelfort         ###   ########.fr       */
+/*   Updated: 2022/11/27 22:05:50 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,26 @@
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*substr;
-	int		i;
+	size_t	len_substr;
 
-	i = 0;
-	substr = malloc(sizeof(*substr) * len + 1);
-	if (!substr)
+	if (!s)
 		return (NULL);
-	while (s[start])
+	if ((unsigned int) ft_strlen(s) < start)
 	{
-		if (substr[i])
-		{
-			substr[i] = s[start];
-			i++;
-		}
-		else
-			break ;
-		start++;
+		substr = ft_calloc(1, sizeof(char));
+		if (!substr)
+			return (NULL);
+	}
+	else
+	{
+		len_substr = (unsigned int) ft_strlen((const char *) &s[start]);
+		if (len_substr >= len)
+			len_substr = len;
+		substr = ft_calloc(len_substr + 1, sizeof(char));
+		if (!substr)
+			return (NULL);
+		ft_memcpy(substr, (char *) &s[start], len_substr);
+		substr[len_substr] = '\0';
 	}
 	return (substr);
 }
