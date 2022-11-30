@@ -6,11 +6,22 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:04:18 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/28 22:30:13 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2022/11/30 14:21:15 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static void	ft_freetab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+	tab = NULL;
+}
 
 static void	ft_filltab(char const *str, char charset, char **tab)
 {
@@ -30,6 +41,11 @@ static void	ft_filltab(char const *str, char charset, char **tab)
 			while (str[i + j] && str[i + j] != charset)
 				j++;
 			tab[tab_i] = ft_substr(str, i, j);
+			if (!tab[tab_i])
+			{
+				ft_freetab(tab);
+				return ;
+			}
 			tab_i++;
 			i += j;
 		}
@@ -43,7 +59,7 @@ char	**ft_split(char const *s, char c)
 	char	**tab;
 
 	i = 0;
-	words = 1;
+	words = 0;
 	if (!s)
 		return (NULL);
 	while (s[i])
@@ -52,38 +68,12 @@ char	**ft_split(char const *s, char c)
 			words++;
 		i++;
 	}
-	tab = malloc(sizeof(tab) * words);
+	tab = (char **) malloc(sizeof(char *) * (words + 1));
 	if (!tab)
 		return (NULL);
-	while (words > 0)
-		tab[--words] = 0;
+	tab[words] = 0;
 	ft_filltab(s, c, tab);
 	if (!tab)
 		return (NULL);
 	return (tab);
 }
-
-// 	i = 1;
-// 	words = 1;
-// 	if (!s)
-// 	{
-// 		if (!(tab = ft_calloc(2, sizeof(char *))))
-// 			return (NULL);
-// 		if (!(tab[0] = ft_calloc(1, sizeof(char))))
-// 			return (NULL);
-// 		return (tab);
-// 	}
-// 	if (s[0] != c)
-// 		words++;
-// 	while (s[i])
-// 	{
-// 		if (s[i] != c && s[i - 1] == c)
-// 			words++;
-// 		i++;
-// 	}
-// 	tab = ft_calloc(words, sizeof(char *));
-// 	if (!tab)
-// 		return (NULL);
-// 	ft_filltab(s, c, tab);
-// 	return (tab);
-// }
