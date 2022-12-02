@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2022/12/02 17:13:46 by fbelfort         ###   ########.fr        #
+#    Created: 2022/12/01 17:05:37 by fbelfort          #+#    #+#              #
+#    Updated: 2022/12/01 17:09:20 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	libft.a
+NAME	=	libftprintf.a
 
 GCC		=	gcc
 
@@ -41,7 +41,7 @@ HEADER	=	$(NAME:.a=.h)
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJ)
+$(NAME)	:	$(OBJ) 
 			ar rcs $(NAME) $(OBJ)
 
 bonus	:	$(OBJ) $(OBJ_B)
