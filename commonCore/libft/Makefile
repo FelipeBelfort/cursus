@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
+#    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2022/12/02 17:13:46 by fbelfort         ###   ########.fr        #
+#    Updated: 2022/12/05 21:57:07 by FelipeBelfo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 
 SRC_B	=	ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
 			ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c \
-			ft_lstlast_bonus.c ft_lstmap_bonus.c ft_lstnew_bonus.c ft_lstsize_bonus.c
+			ft_lstlast_bonus.c ft_lstmap_bonus.c \
+			ft_lstnew_bonus.c ft_lstsize_bonus.c
 
 OBJ		=	$(SRC:.c=.o)
 
@@ -37,14 +38,14 @@ RM		=	rm -f
 HEADER	=	$(NAME:.a=.h)
 
 %.o		: 	%.c $(HEADER)
-			$(GCC) $(CFLAGS) -c $< -o $@ -I $(HEADER)
+			$(GCC) $(CFLAGS) -I. -c $< -o $@ 
 
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJ)
 			ar rcs $(NAME) $(OBJ)
 
-bonus	:	$(OBJ) $(OBJ_B)
+bonus	:	$(OBJ_B) $(OBJ)
 			ar rcs $(NAME) $(OBJ) $(OBJ_B)
 
 clean	:
@@ -55,4 +56,4 @@ fclean	:	clean
 
 re		:	fclean all
 
-.PHONY	:	all $(NAME) clean fclean re bonus
+.PHONY	:	all clean fclean re bonus
