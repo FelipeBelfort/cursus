@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:53:11 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2022/12/06 21:45:08 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2022/12/08 13:52:38 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,29 +38,4 @@ int	ft_putstr_fd(char *s, int fd)
 	len = ft_strlen(s);
 	counter = write(fd, s, len);
 	return (counter);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*ptr;
-
-	if (size && count > SIZE_MAX / size)
-		return (NULL);
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	ft_memset(ptr, 0, count * size);
-	return (ptr);
-}
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	int		i;
-	char	*ptr_p;
-
-	i = 0;
-	ptr_p = (char *)b;
-	while (len--)
-		ptr_p[i++] = c;
-	return (b);
 }

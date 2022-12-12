@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parsechar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:46:42 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2022/12/07 00:46:55 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2022/12/12 12:34:11 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,71 +48,59 @@ static void	ft_putnbr_base_c(long long int nb, char *base, int fd, int *count)
 	}
 }
 
-static char	*ft_uitoa(unsigned long long int nb)
+static void	ft_putunbr_base_c(unsigned long int nb, char *base, int fd, int *c)
 {
-	unsigned long int	n;
-	unsigned long int	n_tmp;
-	size_t				len;
-	char				*str_tmp;
+	unsigned long int	base_len;
 
-	n = nb;
-	len = 1;
-	if (n > LONG_MAX)
-		n = 0;
-	while (nb >= 10)
+	base_len = ft_strlen(base);
+	if (nb >= base_len)
 	{
-		nb /= 10;
-		len++;
+		ft_putnbr_base_c(nb / base_len, base, fd, c);
+		ft_putnbr_base_c(nb % base_len, base, fd, c);
 	}
-	str_tmp = ft_calloc(len + 1, sizeof(char));
-	if (n == 0)
-		str_tmp[0] = '0';
-	while (n > 0)
+	else
 	{
-		n_tmp = n % 10;
-		str_tmp[--len] = DECIMAL[n_tmp];
-		n /= 10;
+		*c += write(fd, &base[nb], 1);
 	}
-	return (str_tmp);
 }
 
 static int	ft_format_nbr(va_list valist, char c, int fd)
 {
-	unsigned long int	tmp;
-	int					count;
-	char				*str;
+	unsigned int	tmp;
+	int				count_nbr;
 
-	count = 0;
+	count_nbr = 0;
 	if (c == 'u')
 	{
-		tmp = va_arg(valist, unsigned long long int);
-		str = ft_uitoa(tmp);
-		count += ft_putstr_fd(str, fd);
-		free(str);
+		tmp = va_arg(valist, unsigned int);
+		ft_putunbr_base_c(tmp, DECIMAL, fd, &count_nbr);
 	}
 	if (c == 'i' || c == 'd')
-		ft_putnbr_base_c(va_arg(valist, int), DECIMAL, fd, &count);
-	return (count);
+		ft_putnbr_base_c(va_arg(valist, int), DECIMAL, fd, &count_nbr);
+	return (count_nbr);
 }
 
 int	ft_parsechar(char c, va_list valist, int fd)
 {
-	int					count;
+	int	count;
 
 	count = 0;
-	if (c == '%')
-		count += ft_putchar_fd('%', fd);
 	if (c == 'c')
 		count += ft_putchar_fd(va_arg(valist, int), fd);
-	if (c == 's')
+	else if (c == 's')
 		count += ft_format_str(valist, fd);
-	if (c == 'p')
-		count += ft_format_ptr(valist, fd);
-	if (c == 'u' || c == 'i' || c == 'd')
+	else if (c == 'p')
+	{
+		count = ft_putstr_fd("0x", fd);
+		ft_putunbr_base_c(va_arg(valist, unsigned long int), LHEXA, fd, &count);
+	}
+	else if (c == 'u' || c == 'i' || c == 'd')
 		count += ft_format_nbr(valist, c, fd);
-	if (c == 'x')
+	else if (c == 'x')
 		ft_putnbr_base_c(va_arg(valist, unsigned int), LHEXA, fd, &count);
-	if (c == 'X')
+	else if (c == 'X')
 		ft_putnbr_base_c(va_arg(valist, unsigned int), UHEXA, fd, &count);
+	else
+		count += ft_putchar_fd(c, fd);
 	return (count);
 }
