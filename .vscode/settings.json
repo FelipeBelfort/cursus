@@ -3,6 +3,8 @@
 	"files.associations": {
 		"stdlib.h": "c",
 		"stdarg.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"stdio.h": "c",
+		"file_utils.h": "c"
 	}
 }

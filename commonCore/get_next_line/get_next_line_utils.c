@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 18:23:33 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2022/12/16 11:55:44 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2022/12/27 04:01:07 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,45 +41,44 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	return (str_dst);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strndup(const char *s1, size_t len)
 {
-	char	*substr;
-	size_t	len_substr;
+	char	*src_copy;
 
-	if (!s)
+	src_copy = malloc((len + 1) * sizeof(char));
+	if (!src_copy)
 		return (NULL);
-	if ((unsigned int) ft_strlen(s) < start)
-	{
-		substr = malloc(sizeof(char));
-		if (!substr)
-			return (NULL);
-	}
-	else
-	{
-		len_substr = (unsigned int) ft_strlen((const char *) &s[start]);
-		if (len_substr >= len)
-			len_substr = len;
-		substr = malloc((len_substr + 1) * sizeof(char));
-		if (!substr)
-			return (NULL);
-		ft_memcpy(substr, (char *) &s[start], len_substr);
-		substr[len_substr] = '\0';
-	}
-	return (substr);
+	ft_memcpy(src_copy, s1, len);
+	src_copy[len] = '\0';
+	return (src_copy);
 }
 
-int	ft_strchr(const char *s, int c)
+size_t	ft_searcheol(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (s[i])
+	i = -1;
+	while (str[++i])
 	{
-		if (s[i] == (unsigned char) c)
-			return (i);
-		i++;
+		if (str[i] == '\n')
+			return (i + 1);
 	}
-	if (s[i] == (unsigned char) c)
-		return (i);
 	return (0);
+}
+
+void	ft_lstfree(t_list **lst)
+{
+	t_list	*ptr_next;
+	t_list	*ptr_tmp;
+
+	ptr_tmp = *lst;
+	while (ptr_tmp)
+	{
+		ptr_next = ptr_tmp->next;
+		if (ptr_tmp->content)
+			free(ptr_tmp->content);
+		free(ptr_tmp);
+		ptr_tmp = ptr_next;
+	}
+	*lst = NULL;
 }
