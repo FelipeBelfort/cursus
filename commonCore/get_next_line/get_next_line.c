@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 03:03:39 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2022/12/27 04:22:17 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/05 12:37:17 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,25 +140,3 @@ char	*get_next_line(int fd)
 		line = ft_search_nl(fd, &rfile, buf_c);
 	return (line);
 }
-
-// #include <stdio.h>
-// #include <fcntl.h>
-
-// int	main(void)
-// {
-// 	int		fd;
-// 	char	*line;
-// 	size_t	i = 1;
-
-// 	fd = open("tests/test_txt", O_RDONLY);
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		if (line == NULL)
-// 			break ;
-// 		printf("(linha -> %zu)", i++);
-// 		printf("%s", line);
-// 		free(line);
-// 	}
-// 	return (0);
-// }
