@@ -6,74 +6,11 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:12:35 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/17 20:15:46 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/23 14:31:20 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/**
- * @brief
- * Checks if in the *CHAR passed in argument
- * contains only numbers (negatives and positives)
- * if that is the case it returns 0, but if the function
- * finds a non digit char it returns 1.
- * @return
- *  1 if is invalid
- * 	OR
- *  0 if is valid
- * 
-*/
-static int	is_invalidstr(char *str)
-{
-	int	i;
-
-	i = -1;
-	if (str[0] == '-' && str[1])
-		i++;
-	while (str[++i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (1);
-	}
-	return (0);
-}
-
-/**
- * @brief
- * Checks if the array of arguments 
- * are all numbers.
- * 
- * @param char **argv (array of values) 
- * @return 1 of is valid OR 0 if there aren't
- *  only numbers 
-*/
-int	parse_stack(char **argv, int i)
-{
-	while (argv[i])
-	{
-		if (is_invalidstr(argv[i++]))
-			return (0);
-	}
-	return (1);
-}
-
-/**
- * @brief
- * Checks if the number NB 
- * already exists in the list A
- * 
-*/
-int	is_dup(t_stack *a, int nb)
-{
-	while (a)
-	{
-		if (nb == a->nb)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
 
 /**
  * @brief
@@ -85,6 +22,79 @@ int	is_int(char *str, int n)
 {
 	if ((ft_strlen(str) > 11)
 		|| (!n && ft_strncmp(str, "0", 2)))
+		return (0);
+	return (1);
+}
+
+/**
+ * @brief
+ * Checks if the stack is sorted in ascending
+ * order and returns 1 only if the last is the greater one
+ * @return 
+ * 1 == true OR 0 == false
+*/
+int	is_sorted(t_stack *stack)
+{
+	while (stack->next)
+	{
+		if (stack->nb > stack->next->nb)
+			return (0);
+		stack = stack->next;
+	}
+	return (1);
+}
+
+/**
+ * @brief
+ * Checks if the stack is ordered even if not sorted
+ * example: 4 5 6 7 8 9 0 1 2 3
+ * @return 
+ * 1 == true OR 0 == false
+*/
+int	is_ordered(t_stack *s)
+{
+	int	i;
+	int	prev;
+
+	i = 0;
+	prev = stack_last(s)->nb;
+	while (s)
+	{
+		if (s->nb < prev)
+			i++;
+		prev = s->nb;
+		s = s->next;
+	}
+	if (i > 1)
+		return (0);
+	return (1);
+}
+
+/**
+ * @brief
+ * Checks if the stack is inverted even if not sorted
+ * example: 
+ * 4 5 6 7 8 9 0 1 2 3 
+ * OR 
+ * 9 8 7 6 5 4 3 2 1 0
+ * @return 
+ * 1 == true OR 0 == false
+*/
+int	is_inverted(t_stack *s)
+{
+	int	i;
+	int	prev;
+
+	i = 0;
+	prev = stack_last(s)->nb;
+	while (s)
+	{
+		if (s->nb > prev)
+			i++;
+		prev = s->nb;
+		s = s->next;
+	}
+	if (i > 1)
 		return (0);
 	return (1);
 }

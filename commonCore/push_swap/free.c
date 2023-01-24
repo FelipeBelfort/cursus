@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:05:45 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/18 15:58:18 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/21 15:13:27 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,21 @@
 void	free_stack(t_stack *stack)
 {
 	t_stack	*ptr;
+
+	while (stack)
+	{
+		ptr = stack->next;
+		free(stack);
+		stack = ptr;
+	}
+}
+
+/**
+ * Takes a linked list of T_LIST and free all nodes.
+*/
+void	free_lst(t_list *stack)
+{
+	t_list	*ptr;
 
 	while (stack)
 	{
@@ -41,9 +56,7 @@ void	free_container(t_pushswap *stacks)
 	if (stacks->b)
 		free_stack(stacks->b);
 	if (stacks->res)
-		ft_lstclear(&stacks->res, free);
-	if (stacks->res_tmp)
-		ft_lstclear(&stacks->res_tmp, free);
+		free_lst(stacks->res);
 	free(stacks);
 }
 

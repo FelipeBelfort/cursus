@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 23:33:14 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/19 13:45:26 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/23 13:41:02 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	push(t_stack **from, t_stack **to)
 	if (!(*from))
 		return (0);
 	ptr = *from;
-	*from = (*from)->next;
+	*from = ptr->next;
 	stack_addfirst(to, ptr);
 	return (1);
 }
@@ -64,7 +64,8 @@ int	push(t_stack **from, t_stack **to)
 /**
  * @brief
  * Gets the first element of
- * the given stack and put it the end of the Stack. That way it will rotate the stack and shift up all the elements by 1.
+ * the given stack and put it the end of the Stack.
+ * That way it will rotate the stack and shift up all the elements by 1.
  * It will check if at least 2 elements exist before the operation
  * @param t_stack **stack
  * @return 
@@ -92,7 +93,8 @@ int	rotate(t_stack **stack)
 /**
  * @brief
  * Gets the last element of
- * the given stack and put it the front of the Stack. That way it will rotate the stack and shift down all the elements by 1.
+ * the given stack and put it the front of the Stack.
+ * That way it will rotate the stack and shift down all the elements by 1.
  * It will check if at least 2 elements exist before the operation
  * @param t_stack **stack
  * @return 
@@ -111,4 +113,17 @@ int	rev_rotate(t_stack **stack)
 		return (1);
 	}
 	return (0);
+}
+
+/**
+ * @brief
+ * One function to rule them all!
+ * 
+ *  It sends the BIN to the given function. 
+*/
+void	do_op(t_pushswap *bin, void (*op)(t_pushswap *))
+{
+	if (!bin || !op)
+		return ;
+	op(bin);
 }
