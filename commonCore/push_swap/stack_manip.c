@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_manip.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:21:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/19 19:32:08 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 */
 t_stack	*stack_last(t_stack *stack)
 {
+	if (!stack)
+		return (NULL);
 	while (stack->next)
 		stack = stack->next;
 	return (stack);
@@ -47,8 +49,6 @@ void	stack_addback(t_stack **stack, t_stack *new)
  * @brief
  * Initiates a T_STACK node
  * and sets NODE->nb = NB /
- * NODE->index = 0 /
- * NODE->ordered = 0 /
  * NODE->next = NULL
  * 
  * @return t_stack *NODE 
@@ -61,8 +61,6 @@ t_stack	*stack_new(int nb)
 	if (!node)
 		return (NULL);
 	node->nb = nb;
-	node->index = 0;
-	node->ordered = 0;
 	node->next = NULL;
 	return (node);
 }
@@ -70,7 +68,8 @@ t_stack	*stack_new(int nb)
 /**
  * @brief
  * It will search for the Node in the Stack and pull it out
- * and then it will reset the links between the previous and next nodes in the list.
+ * and then it will reset the links between
+ * the previous and next nodes in the list.
  * @param t_stack *node to look for
  * @param t_stack **stack where to search
  * @return

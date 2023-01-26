@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_op_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:49:02 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 14:31:20 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	rra(t_pushswap *bin)
 
 	if (rev_rotate(&bin->a))
 	{
-		lst = ft_lstnew(RRA);
-		ft_lstadd_back(&bin->res_tmp, lst);
+		lst = ft_lstnew(ft_strdup("rra"));
+		ft_lstadd_back(&bin->res, lst);
 	}
 }
 
@@ -43,8 +43,10 @@ void	rrb(t_pushswap *bin)
 
 	if (rev_rotate(&bin->b))
 	{
-		lst = ft_lstnew(RRB);
-		ft_lstadd_back(&bin->res_tmp, lst);
+		lst = ft_lstnew(ft_strdup("rrb"));
+		if (!lst)
+			return ;
+		ft_lstadd_back(&bin->res, lst);
 	}
 }
 
@@ -57,17 +59,25 @@ void	rrr(t_pushswap *bin)
 	t_list	*lst;
 	int		rra;
 	int		rrb;
+	char	*txt;
 
-	rra = rotate(&bin->a);
-	rrb = rotate(&bin->b);
+	rra = rev_rotate(&bin->a);
+	rrb = rev_rotate(&bin->b);
+	lst = NULL;
+	txt = NULL;
 	if (rra && rrb)
-		lst = ft_lstnew(RRR);
+		txt = ft_strdup("rrr");
 	else if (rra)
-		lst = ft_lstnew(RRA);
+		txt = ft_strdup("rra");
 	else if (rrb)
-		lst = ft_lstnew(RRB);
-	if (lst)
-		ft_lstadd_back(&bin->res_tmp, lst);
+		txt = ft_strdup("rrb");
+	if (txt)
+	{
+		lst = ft_lstnew(txt);
+		if (!lst)
+			return ;
+	}
+	ft_lstadd_back(&bin->res, lst);
 }
 
 /**
@@ -84,8 +94,10 @@ void	pb(t_pushswap *bin)
 
 	if (push(&bin->a, &bin->b))
 	{
-		lst = ft_lstnew(PB);
-		ft_lstadd_back(&bin->res_tmp, lst);
+		lst = ft_lstnew(ft_strdup("pb"));
+		if (!lst)
+			return ;
+		ft_lstadd_back(&bin->res, lst);
 	}
 }
 
@@ -103,7 +115,9 @@ void	pa(t_pushswap *bin)
 
 	if (push(&bin->b, &bin->a))
 	{
-		lst = ft_lstnew(PA);
-		ft_lstadd_back(&bin->res_tmp, lst);
+		lst = ft_lstnew(ft_strdup("pa"));
+		if (!lst)
+			return ;
+		ft_lstadd_back(&bin->res, lst);
 	}
 }

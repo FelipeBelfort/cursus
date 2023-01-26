@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:56:01 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 14:31:20 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/26 19:13:03 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,34 +35,6 @@ void	sort_3(t_pushswap *bin)
 		do_op(bin, ra);
 	if (!is_sorted(bin->a))
 		do_op(bin, sa);
-}
-
-/**
- * @brief
- * 
- * It sends the fewer ones in order from stack A to stack B
- * untill have 3 numbers on stack A then it calls sort_3().
- * If B is not empty the numbers will be pushed back to A
-*/
-void	sort_selection(t_pushswap *bin)
-{
-	int		size;
-	void	*cmd;
-
-	size = bin->lstsize;
-	while (size > 3)
-	{
-		bin->min_a = stack_min(bin->a);
-		cmd = rra;
-		if (stack_get_i(bin->a, bin->min_a) <= (size-- / 2))
-			cmd = ra;
-		while (stack_get_i(bin->a, bin->min_a) != 0)
-			do_op(bin, cmd);
-		do_op(bin, pb);
-	}
-	sort_3(bin);
-	while (bin->b)
-		do_op(bin, pa);
 }
 
 /**
@@ -113,34 +85,36 @@ void	sort_inverted(t_pushswap *bin)
 
 /**
  * @brief
- * It will sort the list based on radix algorithm.
- * Because we only have 2 stacks it is done using 
- * the bits.
- * It will always do the same amount of operations
- * based on the number of bits of the greater number.
+ * First of all it will send the smaller half of A to B.
+ * Then it will do a selection sort based on the number of
+ * moves to put the element in the right place.
+ * It keeps doing it untill the stack is ordered(even if it's not sorted)
+ * or it reaches a size of 3 elements, if that's the case 
+ * it calls the sort_3() then it does the same to push back to A
+ * finaly it calls sort_ordered()
 */
-void	sort_radix(t_pushswap *bin)
+void	sort_selectcost(t_pushswap *bin)
 {
-	int		i;
-	int		bit_max;
-	void	*cmd;
+	int	i;
 
-	bit_max = 0;
-	i = -1;
-	while ((bin->max >> bit_max) != 0)
-		bit_max++;
-	while (bit_max-- > 0)
+	i = bin->lstsize;
+	if (i > 200)
 	{
-		++i;
-		while (bin->a->ordered == i)
+		while (i-- && !is_ordered(bin->a))
 		{
-			cmd = ra;
-			bin->a->ordered++;
-			if (((bin->a->nb >> i) & 1) == 0)
-				cmd = pb;
-			do_op(bin, cmd);
+			if (bin->a->nb >= (bin->max + bin->min) / 2)
+				do_op(bin, ra);
+			else
+				do_op(bin, pb);
 		}
-		while (bin->b)
-			do_op(bin, pa);
 	}
+	else
+		do_op(bin, pb);
+	while (bin->a->next->next->next && !is_ordered(bin->a))
+		push_tob(bin);
+	if (!is_ordered(bin->a) && !bin->a->next->next->next)
+		sort_3(bin);
+	while (bin->b)
+		push_toa(bin);
+	sort_ordered(bin);
 }

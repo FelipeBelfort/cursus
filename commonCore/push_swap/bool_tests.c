@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bool_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:12:35 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 14:31:20 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/25 16:57:30 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	is_ordered(t_stack *s)
 	int	prev;
 
 	i = 0;
+	if (!s || !s->next)
+		return (1);
 	prev = stack_last(s)->nb;
 	while (s)
 	{
@@ -97,4 +99,21 @@ int	is_inverted(t_stack *s)
 	if (i > 1)
 		return (0);
 	return (1);
+}
+
+/**
+ * @brief
+ * Checks if the number NB 
+ * already exists in the list A
+ * 
+*/
+int	is_dup(t_stack *a, int nb)
+{
+	while (a)
+	{
+		if (nb == a->nb)
+			return (1);
+		a = a->next;
+	}
+	return (0);
 }

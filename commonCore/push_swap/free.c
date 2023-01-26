@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:05:45 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/21 15:13:27 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/26 18:49:12 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,6 @@
 void	free_stack(t_stack *stack)
 {
 	t_stack	*ptr;
-
-	while (stack)
-	{
-		ptr = stack->next;
-		free(stack);
-		stack = ptr;
-	}
-}
-
-/**
- * Takes a linked list of T_LIST and free all nodes.
-*/
-void	free_lst(t_list *stack)
-{
-	t_list	*ptr;
 
 	while (stack)
 	{
@@ -56,7 +41,7 @@ void	free_container(t_pushswap *stacks)
 	if (stacks->b)
 		free_stack(stacks->b);
 	if (stacks->res)
-		free_lst(stacks->res);
+		ft_lstclear(&stacks->res, free);
 	free(stacks);
 }
 

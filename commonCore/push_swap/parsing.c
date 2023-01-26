@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:08:52 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 14:31:20 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/26 18:49:12 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ static int	is_invalidstr(char *str)
 	int	i;
 
 	i = -1;
+	if (ft_strlen(str) < 1)
+		return (1);
 	if (str[0] == '-' && str[1])
 		i++;
 	while (str[++i])
@@ -60,23 +62,6 @@ static int	parse_stack(char **argv, int i)
 
 /**
  * @brief
- * Checks if the number NB 
- * already exists in the list A
- * 
-*/
-static int	is_dup(t_stack *a, int nb)
-{
-	while (a)
-	{
-		if (nb == a->nb)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
-
-/**
- * @brief
  * Iterates over the array of *CHAR
  * to transform them in INT 
  * then add to a linked list.
@@ -96,15 +81,39 @@ static void	lst_init(t_pushswap *bin, char **argv, int i)
 		nb = ft_atoi(argv[i]);
 		if (!is_int(argv[i], nb) || is_dup(a, nb))
 		{
-			if (a)
-				free_stack(a);
-			return ;
+			if (!i)
+				free_tab(argv);
+			ft_error(bin);
 		}
 		tmp = stack_new(nb);
+		if (!tmp)
+		{
+			if (!i)
+				free_tab(argv);
+			ft_error(bin);
+		}
 		stack_addback(&a, tmp);
 		i++;
 	}
 	bin->a = a;
+}
+
+/**
+ * @brief
+ * Initiates a t_pushswap, puts all the pointers to NULL then returns it.
+ * 
+*/
+static t_pushswap	*bin_creator(void)
+{
+	t_pushswap	*bin;
+
+	bin = malloc(sizeof(t_pushswap));
+	if (!bin)
+		return (NULL);
+	bin->a = NULL;
+	bin->b = NULL;
+	bin->res = NULL;
+	return (bin);
 }
 
 /**
@@ -128,14 +137,14 @@ t_pushswap	*stack_init(char **argv, int argc)
 	if (argc == 2 && ft_strchr(argv[i], ' '))
 		tab = ft_split(argv[i--], ' ');
 	ok = parse_stack(tab, i);
-	bin = malloc(sizeof(t_pushswap));
+	bin = bin_creator();
 	if (!bin)
 		ok = 0;
 	if (!ok)
 	{
 		if (!i)
 			free_tab(tab);
-		return (NULL);
+		return (bin);
 	}
 	lst_init(bin, tab, i);
 	if (!i)

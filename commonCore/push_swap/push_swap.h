@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:10:48 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 14:34:58 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/26 18:57:31 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 typedef struct s_stack
 {
 	int				nb;
-	int				ordered;
-	int				index;
 	struct s_stack	*next;
 }				t_stack;
 
@@ -37,13 +35,11 @@ typedef struct s_pushswap
 	int				target;
 	int				nb;
 	t_list			*res;
-	t_list			*res_tmp;
 }				t_pushswap;
 
 /* free */
 
 void		free_stack(t_stack *stack);
-void		free_lst(t_list *stack);
 void		free_container(t_pushswap *stacks);
 void		free_tab(char **tab);
 
@@ -54,14 +50,21 @@ t_pushswap	*stack_init(char **argv, int argc);
 /* to sort */
 
 void		sort_3(t_pushswap *bin);
-void		sort_selection(t_pushswap *bin);
 void		sort_ordered(t_pushswap *bin);
 void		sort_inverted(t_pushswap *bin);
-void		sort_radix(t_pushswap *bin);
 void		sort_selectcost(t_pushswap *bin);
+
+/* selectcost utilities */
+
+void		push_tob(t_pushswap *bin);
+void		push_toa(t_pushswap *bin);
+int			seek_prev(int n, t_stack *s);
+int			seek_next(int n, t_stack *s);
+void		fetch_topush(t_pushswap *bin, int direction);
 
 /* boolean tests */
 
+int			is_dup(t_stack *a, int nb);
 int			is_int(char *str, int n);
 int			is_sorted(t_stack *stack);
 int			is_ordered(t_stack *s);
@@ -100,7 +103,6 @@ int			rotate(t_stack **stack);
 int			rev_rotate(t_stack **stack);
 t_stack		*stack_getnode(t_stack **stack, t_stack *node);
 void		stack_addfirst(t_stack **stack, t_stack *new);
-void		reset_stack(t_pushswap *bin);
 
 /* error */
 
@@ -108,15 +110,5 @@ void		ft_error(t_pushswap *bin);
 
 # define TO_A 0
 # define TO_B 1
-# define SA "sa"
-# define SB "sb"
-# define PA "pa"
-# define PB "pb"
-# define RA "ra"
-# define RB "rb"
-# define RR "rr"
-# define RRA "rra"
-# define RRB "rrb"
-# define RRR "rrr"
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:19:03 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 14:31:20 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,19 +105,13 @@ int	stack_get_i(t_stack *stack, int nb)
 void	fill_container(t_pushswap *bin)
 {
 	int		i;
-	t_stack	*ptr;
 
+	if (!bin->a)
+		return ;
 	i = 0;
 	bin->lstsize = stack_size(bin->a);
 	bin->max = stack_max(bin->a);
 	bin->min = stack_min(bin->a);
 	bin->max_a = bin->max;
 	bin->min_a = bin->min;
-	ptr = bin->a;
-	while (ptr)
-	{
-		ptr->index = i;
-		i++;
-		ptr = ptr->next;
-	}
 }

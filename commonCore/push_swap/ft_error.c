@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:34:00 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 14:34:27 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/24 19:37:43 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
