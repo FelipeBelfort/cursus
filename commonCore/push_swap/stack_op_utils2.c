@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:49:02 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:33:46 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,68 +16,49 @@
  * @brief
  * Shift down all elements of stack A by 1.
  * The last element becomes the first one.
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns RRA else it returns NULL.
 */
-void	rra(t_pushswap *bin)
+char	*rra(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (rev_rotate(&bin->a))
-	{
-		lst = ft_lstnew(ft_strdup("rra"));
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (RRA);
+	return (NULL);
 }
 
 /**
  * @brief
  * Shift down all elements of stack B by 1.
  * The last element becomes the first one.
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns RRB else it returns NULL.
 */
-void	rrb(t_pushswap *bin)
+char	*rrb(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (rev_rotate(&bin->b))
-	{
-		lst = ft_lstnew(ft_strdup("rrb"));
-		if (!lst)
-			return ;
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (RRB);
+	return (NULL);
 }
 
 /**
  * @brief
  *  rra and rrb at the same time
+ * In case of succes it returns RRR 
+ * if only RRA or only RRB are succeded it returns RRA or RRB
+ *  else it returns NULL.
 */
-void	rrr(t_pushswap *bin)
+char	*rrr(t_pushswap *bin)
 {
-	t_list	*lst;
 	int		rra;
 	int		rrb;
-	char	*txt;
 
 	rra = rev_rotate(&bin->a);
 	rrb = rev_rotate(&bin->b);
-	lst = NULL;
-	txt = NULL;
 	if (rra && rrb)
-		txt = ft_strdup("rrr");
+		return (RRR);
 	else if (rra)
-		txt = ft_strdup("rra");
+		return (RRA);
 	else if (rrb)
-		txt = ft_strdup("rrb");
-	if (txt)
-	{
-		lst = ft_lstnew(txt);
-		if (!lst)
-			return ;
-	}
-	ft_lstadd_back(&bin->res, lst);
+		return (RRB);
+	return (NULL);
 }
 
 /**
@@ -85,20 +66,13 @@ void	rrr(t_pushswap *bin)
  * Take the first element at the top of A
  * and put it at the top of B. 
  * Do nothing if A is empty.
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns PB else it returns NULL.
 */
-void	pb(t_pushswap *bin)
+char	*pb(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (push(&bin->a, &bin->b))
-	{
-		lst = ft_lstnew(ft_strdup("pb"));
-		if (!lst)
-			return ;
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (PB);
+	return (NULL);
 }
 
 /**
@@ -106,18 +80,11 @@ void	pb(t_pushswap *bin)
  * Take the first element at the top of B
  * and put it at the top of A. 
  * Do nothing if B is empty.
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns PA else it returns NULL.
 */
-void	pa(t_pushswap *bin)
+char	*pa(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (push(&bin->b, &bin->a))
-	{
-		lst = ft_lstnew(ft_strdup("pa"));
-		if (!lst)
-			return ;
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (PA);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:56:01 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/26 19:13:03 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:41:40 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,26 @@ void	sort_3(t_pushswap *bin)
 		do_op(bin, ra);
 	if (!is_sorted(bin->a))
 		do_op(bin, sa);
+}
+
+void	sort_few(t_pushswap *bin)
+{
+	int		min;
+	void	*cmd;
+
+	while (stack_size(bin->a) > 3)
+	{
+		min = stack_min(bin->a);
+		cmd = ra;
+		if (stack_get_i(bin->a, min) > stack_size(bin->a) / 2)
+			cmd = rra;
+		while (bin->a->nb != min)
+			do_op(bin, cmd);
+		do_op(bin, pb);
+	}
+	sort_3(bin);
+	while (bin->b)
+		do_op(bin, pa);
 }
 
 /**

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 23:33:14 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/23 13:41:02 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/01/27 13:20:56 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,9 +121,13 @@ int	rev_rotate(t_stack **stack)
  * 
  *  It sends the BIN to the given function. 
 */
-void	do_op(t_pushswap *bin, void (*op)(t_pushswap *))
+void	do_op(t_pushswap *bin, char *(*op)(t_pushswap *))
 {
+	char	*operation;
+
 	if (!bin || !op)
 		return ;
-	op(bin);
+	operation = op(bin);
+	if (operation)
+		ft_putendl_fd(operation, 1);
 }

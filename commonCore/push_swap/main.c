@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:27:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:37:42 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	push_swap(t_pushswap *bin)
 	fill_container(bin);
 	if (bin->lstsize == 1 || is_sorted(bin->a))
 		return ;
-	else if (bin->lstsize <= 3)
-		sort_3(bin);
+	else if (bin->lstsize <= 5)
+		sort_few(bin);
 	else if (is_ordered(bin->a))
 		sort_ordered(bin);
 	else if (is_inverted(bin->a))

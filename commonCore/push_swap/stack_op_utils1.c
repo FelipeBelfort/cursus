@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:46:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/27 13:33:46 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,108 +16,73 @@
  * @brief
  * Swap the first 2 elements at the top of stack A.
  * Do nothing if there is only one or no elements
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns SA else it returns NULL.
 */
-void	sa(t_pushswap *bin)
+char	*sa(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (swipe(&bin->a))
-	{
-		lst = ft_lstnew(ft_strdup("sa"));
-		if (!lst)
-			return ;
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (SA);
+	return (NULL);
 }
 
 /**
  * @brief
  * Swap the first 2 elements at the top of stack B.
  * Do nothing if there is only one or no elements
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns SB else it returns NULL.
 */
-void	sb(t_pushswap *bin)
+char	*sb(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (swipe(&bin->b))
-	{
-		lst = ft_lstnew(ft_strdup("sb"));
-		if (!lst)
-			return ;
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (SB);
+	return (NULL);
 }
 
 /**
  * @brief
  * Shift up all elements of stack A by 1.
  * The first element becomes the last one.
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns RA else it returns NULL.
 */
-void	ra(t_pushswap *bin)
+char	*ra(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (rotate(&bin->a))
-	{
-		lst = ft_lstnew(ft_strdup("ra"));
-		if (!lst)
-			return ;
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (RA);
+	return (NULL);
 }
 
 /**
  * @brief
  * Shift up all elements of stack B by 1.
  * The first element becomes the last one.
- * In case of succes it increments the list of operations
- * otherwise nothing is written.
+ * In case of succes it returns RB else it returns NULL.
 */
-void	rb(t_pushswap *bin)
+char	*rb(t_pushswap *bin)
 {
-	t_list	*lst;
-
 	if (rotate(&bin->b))
-	{
-		lst = ft_lstnew(ft_strdup("rb"));
-		if (!lst)
-			return ;
-		ft_lstadd_back(&bin->res, lst);
-	}
+		return (RB);
+	return (NULL);
 }
 
 /**
  * @brief
  *  ra and rb at the same time
+ * In case of succes it returns RR 
+ * if only RA or only RB are succeded it returns RA or RB
+ *  else it returns NULL.
 */
-void	rr(t_pushswap *bin)
+char	*rr(t_pushswap *bin)
 {
-	t_list	*lst;
 	int		ra;
 	int		rb;
-	char	*txt;
 
 	ra = rotate(&bin->a);
 	rb = rotate(&bin->b);
-	lst = NULL;
-	txt = NULL;
 	if (ra && rb)
-		txt = ft_strdup("rr");
+		return (RR);
 	else if (ra)
-		txt = ft_strdup("rr");
+		return (RA);
 	else if (rb)
-		txt = ft_strdup("rb");
-	if (txt)
-	{
-		lst = ft_lstnew(txt);
-		if (!lst)
-			return ;
-	}
-	ft_lstadd_back(&bin->res, lst);
+		return (RB);
+	return (NULL);
 }

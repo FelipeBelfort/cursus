@@ -6,14 +6,14 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:10:48 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/26 18:57:31 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/27 14:26:25 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../libft/libft.h"
+# include "./libft/libft.h"
 
 typedef struct s_stack
 {
@@ -50,6 +50,7 @@ t_pushswap	*stack_init(char **argv, int argc);
 /* to sort */
 
 void		sort_3(t_pushswap *bin);
+void		sort_few(t_pushswap *bin);
 void		sort_ordered(t_pushswap *bin);
 void		sort_inverted(t_pushswap *bin);
 void		sort_selectcost(t_pushswap *bin);
@@ -72,17 +73,17 @@ int			is_inverted(t_stack *s);
 
 /* operations */
 
-void		do_op(t_pushswap *bin, void (*op)(t_pushswap *));
-void		sa(t_pushswap *bin);
-void		sb(t_pushswap *bin);
-void		pa(t_pushswap *bin);
-void		pb(t_pushswap *bin);
-void		ra(t_pushswap *bin);
-void		rb(t_pushswap *bin);
-void		rr(t_pushswap *bin);
-void		rra(t_pushswap *bin);
-void		rrb(t_pushswap *bin);
-void		rrr(t_pushswap *bin);
+void		do_op(t_pushswap *bin, char *(*op)(t_pushswap *));
+char		*sa(t_pushswap *bin);
+char		*sb(t_pushswap *bin);
+char		*pa(t_pushswap *bin);
+char		*pb(t_pushswap *bin);
+char		*ra(t_pushswap *bin);
+char		*rb(t_pushswap *bin);
+char		*rr(t_pushswap *bin);
+char		*rra(t_pushswap *bin);
+char		*rrb(t_pushswap *bin);
+char		*rrr(t_pushswap *bin);
 
 /* stack info */
 
@@ -110,5 +111,16 @@ void		ft_error(t_pushswap *bin);
 
 # define TO_A 0
 # define TO_B 1
+# define PA "pa"
+# define PB "pb"
+# define SA "sa"
+# define SB "sb"
+# define SS "ss"
+# define RA "ra"
+# define RB "rb"
+# define RR "rr"
+# define RRA "rra"
+# define RRB "rrb"
+# define RRR "rrr"
 
 #endif
