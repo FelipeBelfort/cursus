@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 23:33:14 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/27 13:20:56 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:37:50 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ int	rev_rotate(t_stack **stack)
  * @brief
  * One function to rule them all!
  * 
- *  It sends the BIN to the given function. 
+ *  It sends the BIN to the given function and prints 
+ * the operation's name in case of succes 
 */
 void	do_op(t_pushswap *bin, char *(*op)(t_pushswap *))
 {
@@ -129,5 +130,5 @@ void	do_op(t_pushswap *bin, char *(*op)(t_pushswap *))
 		return ;
 	operation = op(bin);
 	if (operation)
-		ft_putendl_fd(operation, 1);
+		ft_putstr_fd(operation, 1);
 }

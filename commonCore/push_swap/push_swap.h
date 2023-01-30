@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:10:48 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/27 14:26:25 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:37:50 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void		sort_selectcost(t_pushswap *bin);
 
 /* selectcost utilities */
 
-void		push_tob(t_pushswap *bin);
-void		push_toa(t_pushswap *bin);
+t_stack		*set_costs(int n, t_stack *s);
+void		push_to(t_pushswap *bin, int direction);
 int			seek_prev(int n, t_stack *s);
 int			seek_next(int n, t_stack *s);
 void		fetch_topush(t_pushswap *bin, int direction);
@@ -111,16 +111,16 @@ void		ft_error(t_pushswap *bin);
 
 # define TO_A 0
 # define TO_B 1
-# define PA "pa"
-# define PB "pb"
-# define SA "sa"
-# define SB "sb"
-# define SS "ss"
-# define RA "ra"
-# define RB "rb"
-# define RR "rr"
-# define RRA "rra"
-# define RRB "rrb"
-# define RRR "rrr"
+# define PA "pa\n"
+# define PB "pb\n"
+# define SA "sa\n"
+# define SB "sb\n"
+# define SS "ss\n"
+# define RA "ra\n"
+# define RB "rb\n"
+# define RR "rr\n"
+# define RRA "rra\n"
+# define RRB "rrb\n"
+# define RRR "rrr\n"
 
 #endif

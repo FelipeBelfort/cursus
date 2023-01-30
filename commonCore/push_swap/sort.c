@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:56:01 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/27 12:41:40 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/30 13:30:17 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,10 @@ void	sort_selectcost(t_pushswap *bin)
 	else
 		do_op(bin, pb);
 	while (bin->a->next->next->next && !is_ordered(bin->a))
-		push_tob(bin);
+		push_to(bin, TO_B);
 	if (!is_ordered(bin->a) && !bin->a->next->next->next)
 		sort_3(bin);
 	while (bin->b)
-		push_toa(bin);
+		push_to(bin, TO_A);
 	sort_ordered(bin);
 }

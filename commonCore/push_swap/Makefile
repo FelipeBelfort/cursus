@@ -6,50 +6,76 @@
 #    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/01/27 19:03:04 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/01/30 17:52:07 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	push_swap
+NAME			=	push_swap
 
-GCC		=	cc
+NAME_BONUS		=	checker
 
-CFLAGS	=	-Wall -Wextra -Werror
+GCC				=	cc
 
-LIBFT	=	libft.a
+CFLAGS			=	-Wall -Wextra -Werror
 
-OBJS_DIR=	objs
+SRC_MAIN		=	main.c
 
-SRC		=	bool_tests.c cost_utils_1.c cost_utils_2.c \
-			free.c ft_error.c main.c parsing.c sort.c stack_info.c \
-			stack_manip.c stack_op_utils1.c stack_op_utils2.c stack_operations.c
+SRC				=	bool_tests.c cost_utils_1.c cost_utils_2.c free.c \
+			ft_error.c parsing.c sort.c stack_info.c \
+			stack_manip.c stack_op_utils1.c stack_op_utils2.c \
+			stack_operations.c
+			
+OBJS_DIR		=	objs/
 
-OBJ		=	$(SRC:%.c=$(OBJS_DIR)/%.o)
+GNL				=	get_next_line
 
-RM		=	rm -f
+GNL_FLAG		=	-L$(GNL) -l$(GNL)
 
-HEADER	=	push_swap.h
+CHECKER			=	checker.c
 
-VPATH = $(OBJS_DIR)
+OBJ_CHECKER		=	$(addprefix $(OBJS_DIR), $(CHECKER:.c=.o))
 
-%.o		: 	%.c $(HEADER) $(OBJS_DIR)
-			$(GCC) $(CFLAGS) -I. -c $< -o $(OBJS_DIR)/$@ 
+OBJ				=	$(addprefix $(OBJS_DIR), $(SRC:.c=.o))
 
-all		:	$(NAME) 
+OBJ_MAIN		=	$(addprefix $(OBJS_DIR), $(SRC_MAIN:.c=.o))
 
-$(OBJS_DIR)	:	
-				mkdir -p $(OBJS_DIR)
+RM				=	rm -fr
 
-$(NAME)	:	$(OBJ) 
-			# $(MAKE) -C libft/ all
-			$(GCC) -o $(NAME) $< $(LIBFT)
+HEADER			=	push_swap.h 
 
-clean	:	
-			$(RM) $(OBJ)
+LIBFT			=	libft
 
-fclean	:	clean
-			$(RM) $(NAME)
+LIBFT_FLAG		=	-L$(LIBFT) -lft
 
-re		:	fclean all
+$(OBJS_DIR)%.o	: 	%.c $(HEADER)
+			$(GCC) $(CFLAGS) -I. -c $< -o $@ 
 
-.PHONY	:	all clean fclean re
+all				:	$(NAME)
+
+$(NAME)			:	$(OBJS_DIR) $(LIBFT) $(OBJ) $(OBJ_MAIN) 
+			$(MAKE) -C $(LIBFT)
+			$(GCC) -o $(NAME) $(OBJ) $(OBJ_MAIN) $(LIBFT_FLAG)
+
+$(OBJS_DIR)		:
+			mkdir $(OBJS_DIR)
+
+bonus			: $(NAME_BONUS)
+
+$(NAME_BONUS)	:	$(OBJS_DIR) $(LIBFT) $(OBJ) $(OBJ_CHECKER)
+				$(MAKE) -C $(LIBFT)
+				$(MAKE) -C $(GNL)
+				$(GCC) -g3 -o $(NAME_BONUS) $(OBJ) $(OBJ_CHECKER) $(LIBFT_FLAG) $(GNL_FLAG)
+
+duo				: $(NAME) $(NAME_BONUS)
+
+clean			:
+			$(MAKE) -C $(LIBFT) clean
+			$(MAKE) -C $(GNL) clean
+			$(RM) $(OBJS_DIR)
+
+fclean			:	clean
+			$(RM) $(NAME) $(LIBFT)/$(LIBFT).a $(NAME_BONUS) $(GNL)/lib$(GNL).a
+
+re				:	fclean all
+
+.PHONY			:	all clean fclean re

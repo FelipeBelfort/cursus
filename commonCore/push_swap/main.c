@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:27:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/27 12:37:42 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/30 19:12:38 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * to sort the list.
  * 
 */
-void	push_swap(t_pushswap *bin)
+static void	push_swap(t_pushswap *bin)
 {
 	fill_container(bin);
 	if (bin->lstsize == 1 || is_sorted(bin->a))
@@ -33,23 +33,6 @@ void	push_swap(t_pushswap *bin)
 		sort_selectcost(bin);
 }
 
-/**
- * @brief
- * It writes the list of operations followed by a '\n'
- * in the command line
-*/
-void	print_res(t_pushswap *bin)
-{
-	t_list	*ptr;
-
-	ptr = bin->res;
-	while (ptr)
-	{
-		ft_putendl_fd(ptr->content, 1);
-		ptr = ptr->next;
-	}
-}
-
 int	main(int argc, char **argv)
 {
 	t_pushswap	*bin;
@@ -60,7 +43,6 @@ int	main(int argc, char **argv)
 		if (!bin || !bin->a)
 			ft_error(bin);
 		push_swap(bin);
-		print_res(bin);
 		free_container(bin);
 	}
 	return (0);
