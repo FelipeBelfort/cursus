@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cost_utils_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:30:16 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 18:00:00 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 17:11:08 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,8 @@ static int	get_opcost(t_pushswap *bin, int n, int direction)
  * @brief
  * It will fetch the better element to be pushed
  * and set the value in the T_PUSHSWAP->NB.
- * The decision is based on the number of moves.
+ * The decision is based on the number of moves
+ * needed to push the element at the right place.
  * Then it will set also the T_PUSHSWAP->TARGET
  * @param t_pushswap
  * @param int 1 for a PB and 0 for a PA

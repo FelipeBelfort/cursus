@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_info.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:19:03 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:31:34 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,19 +99,21 @@ int	stack_get_i(t_stack *stack, int nb)
 
 /**
  * @brief
- * It will fill the container with the informations 
- * from the stack A inside.
+ * It returns the average number of the stack.
+ * It has to take the smallest number of the stack
+ * and the half of the stack size.
+ * So it looks HALF times what is the next number.
+ * @param t_stack *s the stack where to search
+ * @param int N the smallest number of the stack
+ * @param int HALF the half of the stack size
+ *  @return int the average number of the stack
 */
-void	fill_container(t_pushswap *bin)
+int	stack_avrg(t_stack *s, int n, int half)
 {
-	int		i;
-
-	if (!bin->a)
-		return ;
-	i = 0;
-	bin->lstsize = stack_size(bin->a);
-	bin->max = stack_max(bin->a);
-	bin->min = stack_min(bin->a);
-	bin->max_a = bin->max;
-	bin->min_a = bin->min;
+	if (half-- > 0)
+	{
+		n = seek_next(n, s);
+		n = stack_avrg(s, n, half);
+	}
+	return (n);
 }

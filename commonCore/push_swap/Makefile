@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
+#    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/01/30 17:52:07 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/01/31 20:47:46 by FelipeBelfo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ GNL				=	get_next_line
 
 GNL_FLAG		=	-L$(GNL) -l$(GNL)
 
-CHECKER			=	checker.c
+CHECKER			=	checker_bonus.c
 
 OBJ_CHECKER		=	$(addprefix $(OBJS_DIR), $(CHECKER:.c=.o))
 
@@ -64,7 +64,7 @@ bonus			: $(NAME_BONUS)
 $(NAME_BONUS)	:	$(OBJS_DIR) $(LIBFT) $(OBJ) $(OBJ_CHECKER)
 				$(MAKE) -C $(LIBFT)
 				$(MAKE) -C $(GNL)
-				$(GCC) -g3 -o $(NAME_BONUS) $(OBJ) $(OBJ_CHECKER) $(LIBFT_FLAG) $(GNL_FLAG)
+				$(GCC) -o $(NAME_BONUS) $(OBJ) $(OBJ_CHECKER) $(LIBFT_FLAG) $(GNL_FLAG)
 
 duo				: $(NAME) $(NAME_BONUS)
 

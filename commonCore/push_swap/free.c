@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:05:45 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 15:42:52 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:15:10 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	free_container(t_pushswap *stacks)
 		free_stack(stacks->a);
 	if (stacks->b)
 		free_stack(stacks->b);
-	if (stacks->res)
-		ft_lstclear(&stacks->res, free);
 	free(stacks);
 }
 

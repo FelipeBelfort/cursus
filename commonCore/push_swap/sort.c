@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:56:01 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 13:30:17 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:47:11 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 /**
  * @brief
- * algorithm to sort from 3 numbers.
+ * algorithm to sort 3 numbers. (But also works with 2)
  * 
  * Based on the position of the greater number 
- * it will sort the stack in 1 or 2 operations.
+ * it will sort the stack in 1 or 2 operations,
+ * based on the position of the greater element.
  * There are always (n! - 1) possibilities of order 
  * for a given n, so it is easy to find the solution
  * for the 5 possibilities for 3 numbers. 
@@ -37,6 +38,14 @@ void	sort_3(t_pushswap *bin)
 		do_op(bin, sa);
 }
 
+/**
+ * @brief
+ * To sort 4 or 5 elements.
+ * It will look for the smaller one and PB
+ *  untill there are 3 elements.
+ * Then it uses sort_3() and PA while there is an element 
+ *  on stack b.
+*/
 void	sort_few(t_pushswap *bin)
 {
 	int		min;
@@ -65,9 +74,10 @@ void	sort_few(t_pushswap *bin)
 void	sort_ordered(t_pushswap *bin)
 {
 	void	*cmd;
+	int		min_a;
 
-	bin->min_a = stack_min(bin->a);
-	if (stack_get_i(bin->a, bin->min_a) <= (stack_size(bin->a) / 2))
+	min_a = stack_min(bin->a);
+	if (stack_get_i(bin->a, min_a) <= (stack_size(bin->a) / 2))
 		cmd = ra;
 	else
 		cmd = rra;
@@ -89,9 +99,9 @@ void	sort_inverted(t_pushswap *bin)
 
 	size = bin->lstsize;
 	cmd = rra;
-	if (stack_get_i(bin->a, bin->max_a) <= (size / 2))
+	if (stack_get_i(bin->a, bin->max) <= (size / 2))
 		cmd = ra;
-	while (stack_get_i(bin->a, bin->max_a))
+	while (stack_get_i(bin->a, bin->max))
 		do_op(bin, cmd);
 	while (size-- > 3)
 		do_op(bin, pb);
@@ -105,7 +115,8 @@ void	sort_inverted(t_pushswap *bin)
 
 /**
  * @brief
- * First of all it will send the smaller half of A to B.
+ * First of all if the stack has more then 200 elements
+ * it will send the smaller half from A to B.
  * Then it will do a selection sort based on the number of
  * moves to put the element in the right place.
  * It keeps doing it untill the stack is ordered(even if it's not sorted)
@@ -120,10 +131,11 @@ void	sort_selectcost(t_pushswap *bin)
 	i = bin->lstsize;
 	if (i > 200)
 	{
+		bin->target = stack_avrg(bin->a, bin->min, i / 2);
 		while (i-- && !is_ordered(bin->a))
 		{
-			if (bin->a->nb >= (bin->max + bin->min) / 2)
-				do_op(bin, ra);
+			if (bin->a->nb >= bin->target)
+				do_op(bin, rra);
 			else
 				do_op(bin, pb);
 		}

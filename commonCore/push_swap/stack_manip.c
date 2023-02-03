@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   stack_manip.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:21:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/26 18:48:12 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:26:36 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
+ * @brief
+ * It returns the last node of the given stack
  * @param t_stack *stack
  * @return the last node of the stack
 */
@@ -70,8 +72,8 @@ t_stack	*stack_new(int nb)
  * It will search for the Node in the Stack and pull it out
  * and then it will reset the links between
  * the previous and next nodes in the list.
- * @param t_stack *node to look for
  * @param t_stack **stack where to search
+ * @param t_stack *node to look for
  * @return
  * It returns the given node. 
 */

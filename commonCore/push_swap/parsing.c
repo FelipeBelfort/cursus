@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:08:52 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 15:42:53 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:15:25 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ static t_pushswap	*bin_creator(void)
 		return (NULL);
 	bin->a = NULL;
 	bin->b = NULL;
-	bin->res = NULL;
 	return (bin);
 }
 

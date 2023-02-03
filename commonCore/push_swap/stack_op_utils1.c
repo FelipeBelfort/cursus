@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_op_utils1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:46:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/27 13:33:46 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:15:36 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

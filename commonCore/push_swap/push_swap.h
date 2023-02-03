@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:10:48 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 17:37:50 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:07:07 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,11 @@ typedef struct s_pushswap
 {
 	int				max;
 	int				min;
-	int				max_a;
-	int				min_a;
 	t_stack			*a;
-	int				max_b;
-	int				min_b;
 	t_stack			*b;
 	int				lstsize;
 	int				target;
 	int				nb;
-	t_list			*res;
 }				t_pushswap;
 
 /* free */
@@ -92,6 +87,7 @@ int			stack_max(t_stack *stack);
 int			stack_min(t_stack *stack);
 int			stack_get_i(t_stack *stack, int nb);
 void		fill_container(t_pushswap *bin);
+int			stack_avrg(t_stack *s, int n, int half);
 
 /* stack manipulation */
 

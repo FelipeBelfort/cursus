@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bool_tests.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 20:12:35 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/25 16:57:30 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 18:10:21 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,22 @@
 /**
  * @brief
  * Checks if the number N is greater than an INT 
- * 
+ * It compares the original string with the INT and it also checks the length of the string
+ * @param char *str the original string before the conversion to INT
+ * @param int N the int converted from the string
+ * @return
+ * 1 in it's an INT
+ *	0 if it's not
  * 
 */
 int	is_int(char *str, int n)
 {
-	if ((ft_strlen(str) > 11)
+	int	i;
+
+	i = 0;
+	while (str[i] == '0' || str[i] == '-')
+		i++;
+	if ((ft_strlen(&str[i]) > 11)
 		|| (!n && ft_strncmp(str, "0", 2)))
 		return (0);
 	return (1);
@@ -56,7 +66,7 @@ int	is_ordered(t_stack *s)
 	int	i;
 	int	prev;
 
-	i = 0;
+	i = -1;
 	if (!s || !s->next)
 		return (1);
 	prev = stack_last(s)->nb;
@@ -67,7 +77,7 @@ int	is_ordered(t_stack *s)
 		prev = s->nb;
 		s = s->next;
 	}
-	if (i > 1)
+	if (i)
 		return (0);
 	return (1);
 }

@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:27:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 19:12:38 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:15:15 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/**
+ * @brief
+ * It will fill the container with the informations 
+ * from the stack A inside.
+*/
+void	fill_container(t_pushswap *bin)
+{
+	int		i;
+
+	if (!bin->a)
+		return ;
+	i = 0;
+	bin->lstsize = stack_size(bin->a);
+	bin->max = stack_max(bin->a);
+	bin->min = stack_min(bin->a);
+}
 
 /**
  * @brief

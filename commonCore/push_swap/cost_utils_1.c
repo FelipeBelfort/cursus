@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cost_utils_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 14:30:16 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 13:38:56 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/03 17:30:45 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
  * It searchs the number just before N
  * in the target stack.
  * @return the smaller number the closest from the N. 
- * If it doesn't exist it will return -1.
+ * If the smaller element of the stack is greater than N it
+ * returns the greater element.
  *
 */
 int	seek_prev(int n, t_stack *s)
@@ -44,16 +45,17 @@ int	seek_prev(int n, t_stack *s)
  * It searchs the number just after N
  * in the target stack.
  * @return the greater number the closest from the N. 
- * If it doesn't exist it will return -1.
+ * If the greater element of the stack is smaller than N it
+ * returns the smaller element.
  *
 */
 int	seek_next(int n, t_stack *s)
 {
 	int	next;
 
-	if (n > stack_max(s) || !s)
+	next = stack_max(s);
+	if (n > next || !s)
 		return (stack_min(s));
-	next = __INT_MAX__;
 	while (s)
 	{
 		if (s->nb > n)
@@ -142,10 +144,10 @@ static void	*rot_up_down(t_pushswap *bin, int direction)
 }
 
 /**
-//  * @brief
-//  * It will make the necessaries moves before to push
-//  * then it will PA or PB based on the DIRECTION 
-// */
+ * @brief
+ * It will make the necessaries moves before to push
+ * then it will PA or PB based on the DIRECTION 
+*/
 void	push_to(t_pushswap *bin, int direction)
 {
 	void	*cmda;
