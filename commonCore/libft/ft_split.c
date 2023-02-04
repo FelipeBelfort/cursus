@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 14:04:18 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/12/03 23:37:42 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/02/04 21:29:44 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ static void	ft_filltab(char const *str, char charset, char **tab)
 	}
 }
 
+/**
+ * @brief
+ * Allocates (with malloc(3)) and returns an array of strings 
+ * obtained by splitting ’s’ using the character ’c’ as a delimiter.
+ *  The array must end with a NULL pointer.
+ * @param s: The string to be split.
+ * @param c: The delimiter character.
+ * @return
+ * The array of new strings resulting from the split. 
+ * NULL if the allocation fails.
+*/
 char	**ft_split(char const *s, char c)
 {
 	int		i;

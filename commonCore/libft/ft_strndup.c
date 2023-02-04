@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 22:53:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/02/04 21:25:59 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2023/02/04 18:49:27 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 18:50:12 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/**
- * @brief
- * Iterates the list ’lst’ and applies the function ’f’
- *  on the content of each node.
-
-*/
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+char	*ft_strndup(const char *s1, size_t len)
 {
-	while (lst && f)
-	{
-		(*f)(lst->content);
-		lst = lst->next;
-	}
+	char	*src_copy;
+
+	src_copy = ft_calloc((len + 1), sizeof(char));
+	if (!src_copy)
+		return (NULL);
+	ft_memcpy(src_copy, s1, len);
+	src_copy[len] = '\0';
+	return (src_copy);
 }

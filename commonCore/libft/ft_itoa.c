@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:01:32 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/26 02:40:31 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/02/04 21:06:57 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,15 @@ static size_t	ft_count_size(int n)
 	return (len);
 }
 
+/**
+ * @brief
+ * Allocates (with malloc(3)) and returns a string 
+ * representing the integer received as an argument. 
+ * Negative numbers must be handled.
+ * @param n: the integer to convert.
+ * @return 
+ * The string representing the integer. NULL if the allocation fails.
+*/
 char	*ft_itoa(int n)
 {
 	long long int	nb;

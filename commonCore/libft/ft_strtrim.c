@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 13:48:39 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/28 13:39:50 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/02/04 21:04:17 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ static int	ft_istotrim(char c, char const *set)
 	return (0);
 }
 
+/**
+ * @brief
+ * Allocates (with malloc(3)) and returns a copy of ’s1’ 
+ * with the characters specified in ’set’ removed 
+ * from the beginning and the end of the string.
+ * @param s1: The string to be trimmed.
+ * @param set: The reference set of characters to trim.
+ * @return
+ * The trimmed string.
+NULL if the allocation fails.
+*/
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	char	*strtrimmed;
