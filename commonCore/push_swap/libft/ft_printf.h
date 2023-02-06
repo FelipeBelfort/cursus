@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 22:53:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/02/04 21:25:59 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/12/06 16:12:30 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 19:19:22 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-/**
- * @brief
- * Iterates the list ’lst’ and applies the function ’f’
- *  on the content of each node.
+# include <stdarg.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
+# include "libft.h"
 
-*/
-void	ft_lstiter(t_list *lst, void (*f)(void *))
-{
-	while (lst && f)
-	{
-		(*f)(lst->content);
-		lst = lst->next;
-	}
-}
+int		ft_printf(const char *str, ...);
+int		ft_parsechar(char c, va_list valist, int fd);
+
+# define DECIMAL "0123456789"
+# define LHEXA "0123456789abcdef"
+# define UHEXA "0123456789ABCDEF"
+
+#endif

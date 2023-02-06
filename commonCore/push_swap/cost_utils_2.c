@@ -155,3 +155,36 @@ void	fetch_topush(t_pushswap *bin, int direction)
 	else
 		bin->target = seek_next(bin->nb, bin->a);
 }
+
+/**
+ * @brief
+ * It iterates over the stack 2 times and PB 
+ * the elements which are smaller than quarter of the stack
+ * then it does the same but with the half.
+ * After that the stack B has two chuncks with the number smaller 
+ * than the average number of the stack A and the rest remains on 
+ * stack A
+*/
+void	filter_bigstack(t_pushswap *bin)
+{
+	int	i;
+
+	i = bin->lstsize;
+	bin->target = stack_avrg(bin->a, bin->min, (i / 2));
+	bin->nb = stack_avrg(bin->a, bin->min, (i / 4));
+	while (i-- && !is_ordered(bin->a))
+	{
+		if (bin->a->nb > bin->nb)
+			do_op(bin, ra);
+		else
+			do_op(bin, pb);
+	}
+	i = stack_size(bin->a);
+	while (i-- && !is_ordered(bin->a))
+	{
+		if (bin->a->nb > bin->target)
+			do_op(bin, ra);
+		else
+			do_op(bin, pb);
+	}
+}

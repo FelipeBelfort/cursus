@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 22:55:05 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2022/12/02 16:51:17 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/04 21:28:33 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief
+ * Iterates the list ’lst’ and applies the function ’f’
+ *  on the content of each node. 
+ * Creates a new list resulting of the successive 
+ * applications of the function ’f’. 
+ * The ’del’ function is used to delete the content
+ *  of a node if needed.
+ * @return
+ * The new list.
+NULL if the allocation fails.
+*/
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*mapped_lst;

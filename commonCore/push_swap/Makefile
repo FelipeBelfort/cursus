@@ -27,10 +27,6 @@ SRC				=	bool_tests.c cost_utils_1.c cost_utils_2.c free.c \
 			
 OBJS_DIR		=	objs/
 
-GNL				=	get_next_line
-
-GNL_FLAG		=	-L$(GNL) -l$(GNL)
-
 CHECKER			=	checker_bonus.c
 
 OBJ_CHECKER		=	$(addprefix $(OBJS_DIR), $(CHECKER:.c=.o))
@@ -45,36 +41,41 @@ HEADER			=	push_swap.h
 
 LIBFT			=	libft
 
+LIBFT_A			=	$(LIBFT)/$(LIBFT).a
+
 LIBFT_FLAG		=	-L$(LIBFT) -lft
 
-$(OBJS_DIR)%.o	: 	%.c $(HEADER)
+EXTRA_LIBVPATH	= 
+
+$(OBJS_DIR)%.o	: 	%.c $(HEADER) $(LIBFT_A) 
 			$(GCC) $(CFLAGS) -I. -c $< -o $@ 
 
-all				:	$(NAME)
+all				:	$(NAME) 
 
-$(NAME)			:	$(OBJS_DIR) $(LIBFT) $(OBJ) $(OBJ_MAIN) 
-			$(MAKE) -C $(LIBFT)
+$(NAME)			:  $(OBJS_DIR) $(OBJ) $(OBJ_MAIN) Makefile
 			$(GCC) -o $(NAME) $(OBJ) $(OBJ_MAIN) $(LIBFT_FLAG)
 
+$(LIBFT_A)		:	FORCE
+				$(MAKE) -C $(LIBFT)
+
+FORCE			:
+
 $(OBJS_DIR)		:
-			mkdir $(OBJS_DIR)
+			mkdir -p $(OBJS_DIR)
 
 bonus			: $(NAME_BONUS)
 
-$(NAME_BONUS)	:	$(OBJS_DIR) $(LIBFT) $(OBJ) $(OBJ_CHECKER)
-				$(MAKE) -C $(LIBFT)
-				$(MAKE) -C $(GNL)
-				$(GCC) -o $(NAME_BONUS) $(OBJ) $(OBJ_CHECKER) $(LIBFT_FLAG) $(GNL_FLAG)
+$(NAME_BONUS)	:	$(OBJS_DIR) $(OBJ) $(OBJ_CHECKER) Makefile
+				$(GCC) -o $(NAME_BONUS) $(OBJ) $(OBJ_CHECKER) $(LIBFT_FLAG)
 
 duo				: $(NAME) $(NAME_BONUS)
 
 clean			:
 			$(MAKE) -C $(LIBFT) clean
-			$(MAKE) -C $(GNL) clean
 			$(RM) $(OBJS_DIR)
 
 fclean			:	clean
-			$(RM) $(NAME) $(LIBFT)/$(LIBFT).a $(NAME_BONUS) $(GNL)/lib$(GNL).a
+			$(RM) $(NAME) $(LIBFT)/$(LIBFT).a $(NAME_BONUS)
 
 re				:	fclean all
 

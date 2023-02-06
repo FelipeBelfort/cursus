@@ -57,6 +57,7 @@ void		push_to(t_pushswap *bin, int direction);
 int			seek_prev(int n, t_stack *s);
 int			seek_next(int n, t_stack *s);
 void		fetch_topush(t_pushswap *bin, int direction);
+void		filter_bigstack(t_pushswap *bin);
 
 /* boolean tests */
 

@@ -19,11 +19,8 @@
 */
 void	fill_container(t_pushswap *bin)
 {
-	int		i;
-
 	if (!bin->a)
 		return ;
-	i = 0;
 	bin->lstsize = stack_size(bin->a);
 	bin->max = stack_max(bin->a);
 	bin->min = stack_min(bin->a);
