@@ -126,25 +126,13 @@ void	sort_inverted(t_pushswap *bin)
 */
 void	sort_selectcost(t_pushswap *bin)
 {
-	int	i;
-
-	i = bin->lstsize;
-	if (i > 200)
-	{
-		bin->target = stack_avrg(bin->a, bin->min, i / 2);
-		while (i-- && !is_ordered(bin->a))
-		{
-			if (bin->a->nb >= bin->target)
-				do_op(bin, rra);
-			else
-				do_op(bin, pb);
-		}
-	}
+	if (bin->lstsize > 200)
+		filter_bigstack(bin);
 	else
 		do_op(bin, pb);
 	while (bin->a->next->next->next && !is_ordered(bin->a))
 		push_to(bin, TO_B);
-	if (!is_ordered(bin->a) && !bin->a->next->next->next)
+	if (!is_ordered(bin->a))
 		sort_3(bin);
 	while (bin->b)
 		push_to(bin, TO_A);

@@ -12,13 +12,15 @@
 
 #include "libft.h"
 
+/**
+ * @brief
+ * This will return the copy of the string with the allocated memory.
+*/
 char	*ft_strdup(const char *s1)
 {
-	int		i;
 	size_t	src_len;
 	char	*src_copy;
 
-	i = 0;
 	src_len = ft_strlen(s1);
 	src_copy = ft_calloc(src_len + 1, sizeof(char));
 	if (!src_copy)

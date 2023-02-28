@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 16:03:24 by fbelfort          #+#    #+#             */
-/*   Updated: 2022/11/20 16:12:25 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/04 21:18:59 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief
+ * Outputs the integer ’n’ to the given file descriptor.
+ * 
+*/
 void	ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	nb;

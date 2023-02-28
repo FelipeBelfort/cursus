@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 03:03:39 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/01/30 15:32:55 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/04 19:13:16 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 static void	ft_lstaddnew(t_gnl **lst, char *content, size_t len)
 {
@@ -20,7 +21,7 @@ static void	ft_lstaddnew(t_gnl **lst, char *content, size_t len)
 	node = malloc(sizeof(t_gnl));
 	if (!node)
 		return ;
-	node->content = ft_gnlstrndup(content, len);
+	node->content = ft_strndup(content, len);
 	if (!node->content)
 	{
 		free(node);
@@ -49,7 +50,7 @@ static char	*ft_makeline(t_gnl **rfile, size_t len)
 	ptr = *rfile;
 	if (!ptr)
 		return (NULL);
-	line = malloc(sizeof(char) * (len + 1));
+	line = ft_calloc(sizeof(char), (len + 1));
 	if (!line)
 	{
 		ft_lstfree(rfile);
@@ -57,7 +58,7 @@ static char	*ft_makeline(t_gnl **rfile, size_t len)
 	}
 	while (ptr)
 	{
-		ft_gnlmemcpy(&line[i], ptr->content, ptr->len);
+		ft_memcpy(&line[i], ptr->content, ptr->len);
 		i += ptr->len;
 		ptr = ptr->next;
 	}
@@ -108,7 +109,7 @@ char	*ft_get_nl_in_line(t_gnl **rfile, size_t len)
 		return (ft_makeline(rfile, len));
 	else
 	{
-		line = ft_gnlstrndup((*rfile)->content, ceol);
+		line = ft_strndup((*rfile)->content, ceol);
 		line2 = (*rfile)->content;
 		(*rfile)->content = NULL;
 		ft_lstfree(rfile);
@@ -133,7 +134,7 @@ char	*get_next_line(int fd)
 	buf_c = 0;
 	if (rfile)
 	{
-		buf_c = ft_gnlstrlen(rfile->content);
+		buf_c = ft_strlen(rfile->content);
 		line = ft_get_nl_in_line(&rfile, buf_c);
 	}
 	if (!line)

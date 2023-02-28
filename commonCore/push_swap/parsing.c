@@ -71,31 +71,30 @@ static int	parse_stack(char **argv, int i)
 */
 static void	lst_init(t_pushswap *bin, char **argv, int i)
 {
-	t_stack	*a;
 	t_stack	*tmp;
 	int		nb;
+	int		itmp;
 
-	a = NULL;
+	itmp = i;
 	while (argv[i])
 	{
 		nb = ft_atoi(argv[i]);
-		if (!is_int(argv[i], nb) || is_dup(a, nb))
+		if (!is_int(argv[i], nb) || is_dup(bin->a, nb))
 		{
-			if (!i)
+			if (!itmp)
 				free_tab(argv);
 			ft_error(bin);
 		}
 		tmp = stack_new(nb);
 		if (!tmp)
 		{
-			if (!i)
+			if (!itmp)
 				free_tab(argv);
 			ft_error(bin);
 		}
-		stack_addback(&a, tmp);
+		stack_addback(&bin->a, tmp);
 		i++;
 	}
-	bin->a = a;
 }
 
 /**

@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 22:48:51 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2022/12/02 16:51:17 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/02/04 21:23:47 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief
+ * Takes as a parameter a node and frees the memory of the node’s content 
+ * using the function ’del’ given as a parameter and free the node.
+ *  The memory of ’next’ must not be freed.
+*/
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
 	t_list	*tmp;

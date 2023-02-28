@@ -15,7 +15,8 @@
 /**
  * @brief
  * Checks if the number N is greater than an INT 
- * It compares the original string with the INT and it also checks the length of the string
+ * It compares the original string with the INT 
+ * and it also checks the length of the string
  * @param char *str the original string before the conversion to INT
  * @param int N the int converted from the string
  * @return
