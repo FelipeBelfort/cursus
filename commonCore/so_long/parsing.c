@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:45:18 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/02/26 20:33:49 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/02 00:47:05 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,22 @@ int	is_closed(char *line)
 	return (1);
 }
 
-int	count_item(char *line, int item)
+int	is_empty(char **map)
 {
-	int	i;
-	int	count;
+	int	x;
+	int	y;
 
-	i = -1;
-	count = 0;
-	while (line[++i])
+	y = -1;
+	while (map[++y])
 	{
-		if (line[i] == item)
-			count++;
+		x = -1;
+		while (map[y][++x])
+		{
+			if (!ft_strchr("EPC", map[y][x]))
+				return (0);
+		}
 	}
-	return (count);
+	return (1);
 }
 
 /**
@@ -82,58 +85,130 @@ void	flood_map(char **map, int x, int y)
 	}
 }
 
+t_item	*item_newnode(int x, int y)
+{
+	t_item	*ptr;
+
+	ptr = ft_calloc(1, sizeof(t_item));
+	if (!ptr)
+		return (NULL);
+	ptr->x = x;
+	ptr->y = y;
+	ptr->next = NULL;
+	return (ptr);
+}
+
+void	item_addback(t_item **list, t_item *node)
+{
+	t_item	*ptr;
+
+	ptr = NULL;
+	if (!list)
+		*list = node;
+	else
+	{
+		ptr = *list;
+		while (ptr->next)
+			ptr = ptr->next;
+		ptr->next = node;
+	}
+}
+
+int	item_count(t_item *items)
+{
+	int	i;
+
+	i = 0;
+	while (items)
+	{
+		i++;
+		items = items->next;
+	}
+	return (i);
+}
+
+t_item	*pick_items(char **map, int c)
+{
+	int		y;
+	int		x;
+	t_item	*item;
+	t_item	*list;
+
+	y = -1;
+	item = NULL;
+	list = NULL;
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == c)
+			{
+				item = item_newnode(x, y);
+				item_addback(&list, item);
+			}
+		}
+	}
+	return (list);
+}
+
 char	**create_maptab(t_long *game, t_list *map)
 {
 	char	**maptab;
 	t_list	*ptr;
 	int		i;
 
-	i = 0;
+	i = -1;
 	ptr = map;
-	maptab = ft_calloc(game->rows + 1, sizeof(char *));
+	while (ptr && ++i)
+		ptr = ptr->next;
+	game->rows = i++;
+	maptab = ft_calloc(i, sizeof(char *));
 	if (!maptab)
 		return (NULL);
+	i = 0;
+	ptr = map;
 	while (ptr)
 	{
 		maptab[i++] = ft_strdup(ptr->content);
 		ptr = ptr->next;
 	}
+	maptab[i] = NULL;
 	ft_lstclear(&map, free);
 	return (maptab);
 }
 
-int	check_map(t_long *game, t_list *map)
+void	fill_game(t_long *game)
 {
-	int		len;
+	game->cols = ft_strlen(game->map[0]);
+	game->c = pick_items(game->map, 'C');
+	game->p = pick_items(game->map, 'P');
+	game->e = pick_items(game->map, 'E');
+	game->count_c = item_count(game->c);
+	game->count_p = item_count(game->p);
+	game->count_e = item_count(game->e);
+}
+
+int	check_map(t_long *game)
+{
 	int		i;
-	t_list	*ptr;
 
 	i = 0;
-	ptr = map;
-	game->cols = ft_strlen(ptr->content);
-	if (game->cols < 4)
+	fill_game(game);
+	if (!is_onlybrick(game->map[i]))
 		ft_error();
-	while (ptr->next)
+	if (game->rows < 4 || game->cols < 3)
+		ft_error();
+	if (game->count_c < 1 || game->count_p != 1 || game->count_e != 1)
+		ft_error();
+	while (game->map[++i] && game->map[i + 1])
 	{
-		if (ft_strlen(ptr->content) != game->cols || !is_closed(ptr->content)
-			|| is_forbidden(ptr->content)
-			|| (i == 0 && !is_onlybrick(ptr->content)))
+		if (ft_strlen(game->map[i]) != game->cols || is_forbidden(game->map[i])
+			|| !is_closed(game->map[i]))
 			ft_error();
-		game->count_p += count_item(ptr->content, 'P');
-		game->count_e += count_item(ptr->content, 'E');
-		game->count_c += count_item(ptr->content, 'C');
-		i++;
-		ptr = ptr->next;
 	}
-	if (!is_onlybrick(ptr->content))
+	if (!is_onlybrick(game->map[i]))
 		ft_error();
-	if (i < 3)
-		ft_error();
-	if (game->count_p != 1 || game->count_e != 1)
-		ft_error();
-	if (game->count_c < 1)
-		ft_error();
-	game->map = create_maptab(game, map);
 }
 
 void	parse_map(t_long *game, char *path)
@@ -145,7 +220,7 @@ void	parse_map(t_long *game, char *path)
 	char	*line;
 
 	len = ft_strlen(path);
-	if (ft_memcmp(&path[len - 5], ".ber", 4))
+	if (ft_memcmp(&path[len - 4], ".ber", 4))
 		ft_error();
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
@@ -160,5 +235,6 @@ void	parse_map(t_long *game, char *path)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	check_map(game, map);
+	game->map = create_maptab(game, map);
+	check_map(game);
 }
