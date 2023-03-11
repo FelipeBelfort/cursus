@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:49:05 by fbelfort         ###   ########.fr       */
+/*   Created: 2022/11/17 15:55:29 by fbelfort          #+#    #+#             */
+/*   Updated: 2022/12/02 16:47:34 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_error(void)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	ft_putendl_fd("error", 2);
-	exit(0);
+	char	*str_src;
+	char	*str_dst;
+	size_t	i;
+
+	i = 0;
+	str_src = (char *) src;
+	str_dst = (char *) dst;
+	if (n == 0 || dst == src)
+		return (str_dst);
+	while (i < n)
+	{
+		str_dst[i] = str_src[i];
+		i++;
+	}
+	return (str_dst);
 }

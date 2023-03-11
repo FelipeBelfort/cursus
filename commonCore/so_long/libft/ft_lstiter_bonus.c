@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:49:05 by fbelfort         ###   ########.fr       */
+/*   Created: 2022/11/28 22:53:23 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 21:25:59 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_error(void)
+/**
+ * @brief
+ * Iterates the list ’lst’ and applies the function ’f’
+ *  on the content of each node.
+
+*/
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	ft_putendl_fd("error", 2);
-	exit(0);
+	while (lst && f)
+	{
+		(*f)(lst->content);
+		lst = lst->next;
+	}
 }

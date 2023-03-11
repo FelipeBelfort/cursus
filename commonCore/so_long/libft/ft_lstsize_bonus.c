@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:49:05 by fbelfort         ###   ########.fr       */
+/*   Created: 2022/11/28 22:06:15 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 21:28:33 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_error(void)
+/**
+ * @brief
+ * Counts the number of nodes in a list.
+*/
+int	ft_lstsize(t_list *lst)
 {
-	ft_putendl_fd("error", 2);
-	exit(0);
+	int	size;
+
+	size = 0;
+	while (lst)
+	{
+		size++;
+		lst = lst->next;
+	}
+	return (size);
 }

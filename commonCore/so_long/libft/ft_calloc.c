@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:49:05 by fbelfort         ###   ########.fr       */
+/*   Created: 2022/11/17 15:53:32 by fbelfort          #+#    #+#             */
+/*   Updated: 2022/11/30 17:47:55 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
+#include <stdint.h>
 
-void	ft_error(void)
+void	*ft_calloc(size_t count, size_t size)
 {
-	ft_putendl_fd("error", 2);
-	exit(0);
+	void	*ptr;
+
+	if (size && count > SIZE_MAX / size)
+		return (NULL);
+	ptr = malloc(count * size);
+	if (!ptr)
+		return (NULL);
+	ft_memset(ptr, 0, count * size);
+	return (ptr);
 }

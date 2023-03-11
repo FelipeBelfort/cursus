@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
+#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/02/04 20:44:05 by FelipeBelfo      ###   ########.fr        #
+#    Updated: 2023/02/07 14:29:29 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(OBJS_DIR)%.o:%.c $(HEADER)
 
 all		:	$(NAME)
 
-$(NAME)	:	$(OBJS_DIR) $(OBJ)
+$(NAME)	:	$(OBJS_DIR) $(OBJ) Makefile
 			ar rcs $(NAME) $(OBJ)
 
 $(OBJS_DIR):

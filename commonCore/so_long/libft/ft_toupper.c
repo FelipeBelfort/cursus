@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:49:05 by fbelfort         ###   ########.fr       */
+/*   Created: 2022/11/07 14:33:03 by fbelfort          #+#    #+#             */
+/*   Updated: 2022/11/26 02:57:14 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
-
-void	ft_error(void)
+int	ft_toupper(int c)
 {
-	ft_putendl_fd("error", 2);
-	exit(0);
+	if (c >= 'a' && c <= 'z')
+		c -= 32;
+	return (c);
 }

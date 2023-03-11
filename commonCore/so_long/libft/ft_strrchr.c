@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:49:05 by fbelfort         ###   ########.fr       */
+/*   Created: 2022/11/17 12:02:54 by fbelfort          #+#    #+#             */
+/*   Updated: 2023/03/10 18:05:24 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_error(void)
+char	*ft_strrchr(const char *s, int c)
 {
-	ft_putendl_fd("error", 2);
-	exit(0);
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	i = ft_strlen(s);
+	while (s[--i])
+	{
+		if (s[i] == (unsigned char) c)
+			return ((char *)&s[i]);
+	}
+	return (NULL);
 }

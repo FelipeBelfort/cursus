@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:49:05 by fbelfort         ###   ########.fr       */
+/*   Created: 2022/11/28 21:47:25 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 21:20:36 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-void	ft_error(void)
+/**
+ * @brief
+ * Adds the node ’new’ at the beginning of the list.
+*/
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	ft_putendl_fd("error", 2);
-	exit(0);
+	if (!lst || !new)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }
