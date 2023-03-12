@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:45:18 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 17:55:11 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/13 00:09:32 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "includes/so_long.h"
 
 int	is_onlybrick(char *line)
 {
@@ -129,6 +129,20 @@ int	item_count(t_item *items)
 	return (i);
 }
 
+void	put_itemsback(t_long *game)
+{
+	t_item	*ptr;
+
+	ptr = game->c;
+	game->map[game->p->y][game->p->x] = 'P';
+	game->map[game->e->y][game->e->x] = 'E';
+	while (ptr)
+	{
+		game->map[game->c->y][game->c->x] = 'C';
+		ptr = ptr->next;
+	}
+}
+
 t_item	*pick_items(char **map, int c)
 {
 	int		y;
@@ -187,6 +201,7 @@ int	check_map(t_long *game)
 	flood_map(game->map, game->p->y, game->p->x);
 	if (!is_empty(game->map))
 		ft_error();
+	put_itemsback(game);
 	return (0);
 }
 

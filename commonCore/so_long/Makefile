@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
+#    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/03/12 19:59:34 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/03/13 00:13:01 by FelipeBelfo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ OBJ				=	$(addprefix $(OBJS_DIR), $(SRC:.c=.o))
 
 RM				=	rm -fr
 
-HEADER			=	$(NAME).h
+HEADER			=	includes/$(NAME).h
 
 LIBFT			=	libft
 
@@ -41,7 +41,7 @@ MLX_A			=	$(MLX_PATH)/lib$(MLX).a
 UNAME			:=	$(shell uname)
 
 ifeq ($(UNAME), Darwin)
-	MLX_PATH	=	minilibx-macos
+	MLX_PATH	=	minilibx_opengl
 	LIB_FLAG	=	-L$(LIBFT) -L$(MLX_PATH) -lft -lmlx -framework OpenGL -framework AppKit
 else
 	MLX_PATH	=	minilibx-linux
