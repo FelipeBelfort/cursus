@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:01:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:35:32 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/12 14:46:12 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	is_valid_file(char *namefile)
 	return (1);
 }
 
+int	launch_game(t_long *game);
+
 int	main(int argc, char **argv)
 {
 	t_long	*game;
@@ -56,8 +58,7 @@ int	main(int argc, char **argv)
 		if (!is_valid_file(argv[1]))
 			ft_error();
 		game = init_game(argv[1]);
-		game->mlx = mlx_init();
-		game->win = mlx_new_window(game->mlx, 1280, 720, "so_long");
-		mlx_loop(game->mlx);
+		launch_game(game);
 	}
+	return (0);
 }

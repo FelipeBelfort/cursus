@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 21:48:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 15:23:28 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/12 16:51:18 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,21 @@ typedef struct s_long
 	t_item	*p;
 	t_item	*e;
 	t_item	*c;
+
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line;
+	int		edian;
+
+	int		bpp_text[5];
+	int		sline_text[5];
+	int		ed_text[5];
+	int		heighttext[5];
+	int		widthtext[5];
+	char	*ptr_text[5];
+	void	*text[5];
+
 	void	*mlx;
 	void	*win;
 }	t_long;
