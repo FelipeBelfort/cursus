@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/11/17 16:00:04 by fbelfort          #+#    #+#             */
+/*   Updated: 2022/11/22 16:36:20 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+	char	*str1;
+	char	*str2;
+	size_t	i;
 
-#endif
+	str1 = (char *) s1;
+	str2 = (char *) s2;
+	i = 0;
+	while (i < n)
+	{
+		if ((unsigned char) str1[i] != (unsigned char) str2[i])
+			return ((unsigned char) str1[i] - (unsigned char) str2[i]);
+		else
+			i++;
+	}
+	return (0);
+}

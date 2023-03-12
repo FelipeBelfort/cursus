@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/12/14 18:23:33 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 19:13:16 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "get_next_line.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+size_t	ft_searcheol(char *str)
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+	int	i;
 
-#endif
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '\n')
+			return (i + 1);
+	}
+	return (0);
+}
+
+void	ft_lstfree(t_gnl **lst)
+{
+	t_gnl	*ptr_next;
+	t_gnl	*ptr_tmp;
+
+	ptr_tmp = *lst;
+	while (ptr_tmp)
+	{
+		ptr_next = ptr_tmp->next;
+		if (ptr_tmp->content)
+			free(ptr_tmp->content);
+		free(ptr_tmp);
+		ptr_tmp = ptr_next;
+	}
+	*lst = NULL;
+}

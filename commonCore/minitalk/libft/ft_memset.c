@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/11/17 14:12:32 by fbelfort          #+#    #+#             */
+/*   Updated: 2022/12/02 16:47:34 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+void	*ft_memset(void *b, int c, size_t len)
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+	int		i;
+	char	*ptr_p;
 
-#endif
+	i = 0;
+	ptr_p = (char *)b;
+	while (len--)
+		ptr_p[i++] = c;
+	return (b);
+}

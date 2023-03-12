@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/11/28 22:48:51 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 21:23:47 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+/**
+ * @brief
+ * Takes as a parameter a node and frees the memory of the node’s content 
+ * using the function ’del’ given as a parameter and free the node.
+ *  The memory of ’next’ must not be freed.
+*/
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+	t_list	*tmp;
 
-#endif
+	if (lst && del)
+	{
+		tmp = lst;
+		lst = lst->next;
+		(*del)(tmp->content);
+		free(tmp);
+	}
+}

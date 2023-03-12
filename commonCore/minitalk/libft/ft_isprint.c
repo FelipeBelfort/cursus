@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/11/07 14:24:38 by fbelfort          #+#    #+#             */
+/*   Updated: 2022/11/21 19:11:04 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
-
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+int	ft_isprint(int c)
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
-
-#endif
+	if (c >= ' ' && c <= '~')
+		return (1);
+	return (0);
+}

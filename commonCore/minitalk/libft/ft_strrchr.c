@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/11/17 12:02:54 by fbelfort          #+#    #+#             */
+/*   Updated: 2023/03/10 18:04:55 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+char	*ft_strrchr(const char *s, int c)
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+	size_t	i;
 
-#endif
+	if (!s)
+		return (NULL);
+	i = ft_strlen(s);
+	while (s[--i])
+	{
+		if (s[i] == (unsigned char) c)
+			return ((char *)&s[i]);
+	}
+	return (NULL);
+}

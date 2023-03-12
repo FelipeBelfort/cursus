@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/11/28 22:53:23 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 21:25:59 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
+/**
+ * @brief
+ * Iterates the list ’lst’ and applies the function ’f’
+ *  on the content of each node.
 
-typedef struct s_stack
+*/
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
-
-#endif
+	while (lst && f)
+	{
+		(*f)(lst->content);
+		lst = lst->next;
+	}
+}

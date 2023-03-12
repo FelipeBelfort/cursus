@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/12/06 16:12:30 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 19:19:22 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include <signal.h>
+# include <stdarg.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include <stdlib.h>
+# include <limits.h>
+# include "libft.h"
 
-typedef struct s_stack
-{
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+int		ft_printf(const char *str, ...);
+int		ft_parsechar(char c, va_list valist, int fd);
+
+# define DECIMAL "0123456789"
+# define LHEXA "0123456789abcdef"
+# define UHEXA "0123456789ABCDEF"
 
 #endif

@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/11/17 15:58:15 by fbelfort          #+#    #+#             */
+/*   Updated: 2022/11/22 16:03:16 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#include "libft.h"
 
-# include <signal.h>
-# include <unistd.h>
-# include "../libft/libft.h"
-
-typedef struct s_stack
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+	size_t			i;
+	unsigned char	*str;
 
-#endif
+	i = 0;
+	str = (unsigned char *) s;
+	while (i < n)
+	{
+		if (str[i] == (unsigned char) c)
+			return (&str[i]);
+		i++;
+	}
+	return (NULL);
+}

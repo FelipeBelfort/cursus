@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:50:38 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/06 02:14:40 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/11 23:48:01 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	send_null(int pid)
 	while (++bit < 8)
 	{
 		kill(pid, SIGUSR1);
-		usleep(80);
+		usleep(90);
 	}
 }
 
@@ -53,4 +53,6 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Error: Expected ./client <PID> <message>", 1);
 	else
 		send_bits(ft_atoi(argv[1]), argv[2]);
+
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:50:41 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/06 02:09:35 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/11 23:51:31 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * @brief
  * Initiates a T_STACK node
- * and sets NODE->nb = NB /
+ * and sets NODE->c = NB /
  * NODE->next = NULL
  *
  * @return t_stack *NODE
@@ -27,7 +27,7 @@ t_stack	*stack_new(int nb)
 	node = malloc(sizeof(t_stack));
 	if (!node)
 		return (NULL);
-	node->nb = nb;
+	node->c = nb;
 	node->next = NULL;
 	return (node);
 }
@@ -67,7 +67,6 @@ void	free_stack(t_stack **stack)
 		free(*stack);
 		(*stack) = ptr;
 	}
-	// free(stack);
 	stack = NULL;
 }
 
@@ -78,20 +77,17 @@ void	print_message(t_stack *message)
 	ptr = message;
 	while (ptr)
 	{
-		ft_putchar_fd(ptr->nb, 1);
+		write(1, &ptr->c, 1);
 		ptr = ptr->next;
 	}
-	// free_stack(&message);
 }
 
 void	handle_sigusr(int sig)
 {
 	static int		bit = 0;
 	static int		bit_count = 0;
-	static t_stack	*c = NULL;
+	static t_stack	*message = NULL;
 
-	// (void)context;
-	// (void)info;
 	if (sig == SIGUSR2)
 	{
 		bit = (bit << 1) | 1;
@@ -101,24 +97,16 @@ void	handle_sigusr(int sig)
 	bit_count++;
 	if (bit_count == 8)
 	{
-		ft_putnbr_fd(bit, 1);
-		ft_putstr_fd(" --> ", 1);
-		ft_putchar_fd(bit, 1);
-		ft_putchar_fd('\n', 1);
 		if (bit)
-			stack_addback(&c, stack_new(bit));
+			stack_addback(&message, stack_new(bit));
 		if (!bit)
 		{
-			print_message(c);
-			free_stack(&c);
+			print_message(message);
+			free_stack(&message);
 		}
 		bit = 0;
 		bit_count = 0;
 	}
-	// if (sig == SIGUSR1)
-	// 	ft_putchar_fd('0', 1);
-	// if (sig == SIGUSR2)
-	// 	ft_putchar_fd('1', 1);
 }
 
 int	main(void)
@@ -132,9 +120,9 @@ int	main(void)
 	ft_putchar_fd('\n', 1);
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_handler = &handle_sigusr;
-	// sa.__sigaction_u.__sa_sigaction = handle_sigusr;
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
 	while (1)
 		pause();
+	return (0);
 }

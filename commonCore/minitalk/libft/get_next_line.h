@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk.h                                         :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Created: 2022/12/14 18:23:37 by FelipeBelfo       #+#    #+#             */
+/*   Updated: 2023/02/04 19:13:16 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_H
-# define MINITALK_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-# include <signal.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include <stdlib.h>
 
-typedef struct s_stack
+typedef struct s_gnl
 {
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+	void			*content;
+	size_t			len;
+	struct s_gnl	*next;
+}				t_gnl;
+
+char	*get_next_line(int fd);
+size_t	ft_searcheol(char *str);
+void	ft_lstfree(t_gnl **lst);
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 #endif
