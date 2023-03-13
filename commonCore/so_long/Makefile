@@ -6,7 +6,7 @@
 #    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/03/13 00:13:01 by FelipeBelfo      ###   ########.fr        #
+#    Updated: 2023/03/13 21:00:08 by FelipeBelfo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,26 +30,24 @@ LIBFT			=	libft
 
 MLX				=	mlx
 
-# MLX_PATH		=	minilibx-linux
-
 LIBFT_A			=	$(LIBFT)/$(LIBFT).a
 
 MLX_A			=	$(MLX_PATH)/lib$(MLX).a
 
-# LIB_FLAG		=	-L$(LIBFT) -L$(MLX_PATH) -lft -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
-
 UNAME			:=	$(shell uname)
 
 ifeq ($(UNAME), Darwin)
+	DEFINE		=	-D K_ESC=53 -D K_UP=126 -D K_DOWN=125 -D K_LEFT=123 -D K_RIGHT=124 -D K_W=13 -D K_S=1 -D K_A=0 -D K_D=2
 	MLX_PATH	=	minilibx_opengl
 	LIB_FLAG	=	-L$(LIBFT) -L$(MLX_PATH) -lft -lmlx -framework OpenGL -framework AppKit
 else
+	DEFINE		=	-D K_ESC=53 -D K_UP=65362 -D K_DOWN=65364 -D K_LEFT=65361 -D K_RIGHT=65363 -D K_W=119 -D K_S=115 -D K_A=97 -D K_D=100
 	MLX_PATH	=	minilibx-linux
 	LIB_FLAG	=	-L$(LIBFT) -L$(MLX_PATH) -lft -lmlx_Linux -L/usr/lib -lm -lXext -lX11 -lz
 endif
 
 $(OBJS_DIR)%.o	: 	%.c $(HEADER) $(LIBFT_A) $(MLX_A)
-			$(GCC) $(CFLAGS) -I/usr/include -Imlx -O3 -c $< -o $@
+			$(GCC) $(CFLAGS) $(DEFINE) -I/usr/include -Imlx -O3 -c $< -o $@
 
 all				:	$(NAME)
 

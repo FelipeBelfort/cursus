@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 14:39:27 by fbelfort          #+#    #+#             */
-/*   Updated: 2023/03/13 00:09:17 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/13 20:07:51 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,104 @@ void	display_maze(t_long *game, void *win)
 		{
 			block_x = x * block_size;
 			block_y = y * block_size;
-			if (game->map[y][x] == '0' || game->map[y][x] == 'b')
-				mlx_put_image_to_window(game->mlx, win, game->text[0], block_x, block_y);
-			if (game->map[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, win, game->text[1], block_x, block_y);
-			if (game->map[y][x] == 'E')
-				mlx_put_image_to_window(game->mlx, win, game->text[2], block_x, block_y);
-			if (game->map[y][x] == 'P')
+			if (x == game->p->x && y == game->p->y)
 				mlx_put_image_to_window(game->mlx, win, game->text[3], block_x, block_y);
-			if (game->map[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, win, game->text[4], block_x, block_y);
+			else
+			{
+				if (game->map[y][x] == '0' || game->map[y][x] == 'b')
+					mlx_put_image_to_window(game->mlx, win, game->text[0], block_x, block_y);
+				if (game->map[y][x] == '1')
+					mlx_put_image_to_window(game->mlx, win, game->text[1], block_x, block_y);
+				if (game->map[y][x] == 'E')
+					mlx_put_image_to_window(game->mlx, win, game->text[2], block_x, block_y);
+				if (game->map[y][x] == 'C')
+					mlx_put_image_to_window(game->mlx, win, game->text[4], block_x, block_y);
+			}
 		}
 	}
 }
 
+// void	free_tlong(t_long *game)
+// {
+
+// }
+
+int	close_window(void *param)
+{
+	(void) param;
+	exit(0);
+}
+
+int	key_press(int key, void *param)
+{
+	t_long	*game;
+
+	game = (t_long *) param;
+	if (key == K_ESC)
+		close_window(game);
+	if (key == K_UP || key == K_W)
+	{
+		if (game->map[game->p->y - 1][game->p->x] != '1')
+		{
+			game->p->y--;
+			if (game->map[game->p->y][game->p->x] == 'C')
+			{
+				game->map[game->p->y][game->p->x] = '0';
+				game->count_c--;
+			}
+		}
+		// mlx_put_image_to_window(game->mlx, game->win, game->text[3], game->p->x * 64, game->p->y * 64);
+	}
+	if (key == K_DOWN || key == K_S)
+	{
+		if (game->map[game->p->y + 1][game->p->x] != '1')
+		{
+			game->p->y++;
+			if (game->map[game->p->y][game->p->x] == 'C')
+			{
+				game->map[game->p->y][game->p->x] = '0';
+				game->count_c--;
+			}
+		}
+		// mlx_put_image_to_window(game->mlx, game->win, game->text[3], game->p->x * 64, game->p->y * 64);
+	}
+	if (key == K_LEFT || key == K_A)
+	{
+		if (game->map[game->p->y][game->p->x - 1] != '1')
+		{
+			game->p->x--;
+			if (game->map[game->p->y][game->p->x] == 'C')
+			{
+				game->map[game->p->y][game->p->x] = '0';
+				game->count_c--;
+			}
+		}
+		// mlx_put_image_to_window(game->mlx, game->win, game->text[3], game->p->x * 64, game->p->y * 64);
+	}
+	if (key == K_RIGHT || key == K_D)
+	{
+		if (game->map[game->p->y][game->p->x + 1] != '1')
+		{
+			game->p->x++;
+			if (game->map[game->p->y][game->p->x] == 'C')
+			{
+				game->map[game->p->y][game->p->x] = '0';
+				game->count_c--;
+			}
+		}
+		// mlx_put_image_to_window(game->mlx, game->win, game->text[3], game->p->x * 64, game->p->y * 64);
+	}
+	mlx_clear_window(game->mlx, game->win);
+	display_maze(game, game->win);
+	return (0);
+}
+
+int	key_press_test(int key, void *param)
+{
+	(void) param;
+	printf("key code ==> %d\n", key);
+	return (0);
+}
 
 int	launch_game(t_long *game)
 {
@@ -75,7 +159,10 @@ int	launch_game(t_long *game)
 			&(game->bpp_text[4]), &(game->sline_text[4]), &(game->ed_text[4]));
 
 	display_maze(game, game->win);
+	// mlx_put_image_to_window(game->mlx, game->win, game->text[3], (game->p->x + 2) * 64, (game->p->y - 2) * 64);
 
+	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_key_hook(game->win, key_press, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

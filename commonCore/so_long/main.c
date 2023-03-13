@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:01:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/13 00:09:47 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/13 20:13:15 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int	main(int argc, char **argv)
 		game = init_game(argv[1]);
 		launch_game(game);
 	}
+	ft_putendl_fd("Error", 2);
 	return (0);
 }

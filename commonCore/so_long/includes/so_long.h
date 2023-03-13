@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 21:48:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/13 00:08:31 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/13 21:00:17 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 typedef struct s_item
 {
-	int				x;
-	int				y;
+	size_t			x;
+	size_t			y;
 	struct s_item	*next;
 	//image?
 }	t_item;
@@ -58,5 +58,17 @@ typedef struct s_long
 
 void	ft_error(void);
 int		parse_map(t_long *game, char *path);
+
+# ifndef K_ESC
+#  define K_ESC 53
+#  define K_UP 65362
+#  define K_DOWN 65364
+#  define K_LEFT 65361
+#  define K_RIGHT 65363
+#  define K_W 119
+#  define K_S 115
+#  define K_A 97
+#  define K_D 100
+# endif
 
 #endif

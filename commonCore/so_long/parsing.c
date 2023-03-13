@@ -6,7 +6,7 @@
 /*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:45:18 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/13 00:09:32 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/13 20:05:02 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	put_itemsback(t_long *game)
 	t_item	*ptr;
 
 	ptr = game->c;
-	game->map[game->p->y][game->p->x] = 'P';
+	// game->map[game->p->y][game->p->x] = 'P';
 	game->map[game->e->y][game->e->x] = 'E';
 	while (ptr)
 	{
