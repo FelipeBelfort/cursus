@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:45:18 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/13 20:05:02 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/14 15:23:53 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ t_item	*item_newnode(int y, int x)
 		return (NULL);
 	ptr->x = x;
 	ptr->y = y;
+	ptr->img = NULL;
 	ptr->next = NULL;
 	return (ptr);
 }
@@ -139,6 +140,7 @@ void	put_itemsback(t_long *game)
 	while (ptr)
 	{
 		game->map[game->c->y][game->c->x] = 'C';
+		printf("x = %zu   |   y = %zu   |   item = %c\n", ptr->x, ptr->y, game->map[game->c->y][game->c->x]);
 		ptr = ptr->next;
 	}
 }
@@ -247,7 +249,8 @@ int	parse_map(t_long *game, char *path)
 		if (!node)
 			ft_error();
 		line = ft_strchr(line, '\n');
-		line[0] = 0;
+		if (line)
+			line[0] = 0;
 		ft_lstadd_back(&map, node);
 		line = get_next_line(fd);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:01:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/13 20:13:15 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/14 15:20:50 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,22 @@ int	is_valid_file(char *namefile)
 	return (1);
 }
 
+// void	debug(t_long *game)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (game->map[i++])
+// 		printf("%s\n", game->map[i]);
+// 	t_item *ptr = game->c;
+// 	i = 0;
+// 	while (ptr)
+// 	{
+// 		printf("i = %d   |   x = %zu   |   y = %zu\n", i++, ptr->x, ptr->y);
+// 		ptr = ptr->next;
+// 	}
+// }
+
 int	launch_game(t_long *game);
 
 int	main(int argc, char **argv)
@@ -58,6 +74,7 @@ int	main(int argc, char **argv)
 		if (!is_valid_file(argv[1]))
 			ft_error();
 		game = init_game(argv[1]);
+		// debug(game);
 		launch_game(game);
 	}
 	ft_putendl_fd("Error", 2);

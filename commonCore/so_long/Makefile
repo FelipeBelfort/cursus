@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
+#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/03/13 21:00:08 by FelipeBelfo      ###   ########.fr        #
+#    Updated: 2023/03/14 12:13:15 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ ifeq ($(UNAME), Darwin)
 	MLX_PATH	=	minilibx_opengl
 	LIB_FLAG	=	-L$(LIBFT) -L$(MLX_PATH) -lft -lmlx -framework OpenGL -framework AppKit
 else
-	DEFINE		=	-D K_ESC=53 -D K_UP=65362 -D K_DOWN=65364 -D K_LEFT=65361 -D K_RIGHT=65363 -D K_W=119 -D K_S=115 -D K_A=97 -D K_D=100
+	DEFINE		=	-D K_ESC=65307 -D K_UP=65362 -D K_DOWN=65364 -D K_LEFT=65361 -D K_RIGHT=65363 -D K_W=119 -D K_S=115 -D K_A=97 -D K_D=100
 	MLX_PATH	=	minilibx-linux
 	LIB_FLAG	=	-L$(LIBFT) -L$(MLX_PATH) -lft -lmlx_Linux -L/usr/lib -lm -lXext -lX11 -lz
 endif
