@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 21:48:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/14 13:06:43 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:56:32 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_long
 	int		count_p;
 	int		count_e;
 	int		count_c;
+	size_t	mv_count;
 	size_t	rows;
 	size_t	cols;
 	char	**map;
@@ -38,26 +39,56 @@ typedef struct s_long
 	t_item	*e;
 	t_item	*c;
 
-	// void	*img;
-	// char	*addr;
-	// int		bpp;
-	// int		line;
-	// int		edian;
-
-	int		bpp_text[8];
-	int		sline_text[8];
-	int		ed_text[8];
-	int		heighttext[8];
-	int		widthtext[8];
-	char	*ptr_text[8];
+	int		bpp_txt[8];
+	int		sline_txt[8];
+	int		ed_txt[8];
+	int		h_txt[8];
+	int		w_txt[8];
+	char	*ptr_txt[8];
 	void	*text[8];
 
 	void	*mlx;
 	void	*win;
 }	t_long;
 
-void	ft_error(void);
+/* boolean tests */
+
+int		is_empty(char **map);
+int		is_closed(char *line);
+int		is_forbidden(char *line);
+int		is_onlybrick(char *line);
+
+/* items utils */
+
+t_item	*pick_items(char **map, int c);
+void	put_itemsback(t_long *game);
+int		item_count(t_item *items);
+void	item_addback(t_item **list, t_item *node);
+t_item	*item_newnode(int y, int x);
+
+/* key press management */
+
+int		key_press(int key, void *param);
+
+/* display */
+
+void	display_maze(t_long *game);
+void	apply_textures(t_long *g);
+
+/* map parsing */
+
 int		parse_map(t_long *game, char *path);
+int		create_maptab(t_long *game, t_list *map);
+
+/* end of game management */
+
+void	ft_error(t_long *game, int code);
+int		close_window(void *param);
+void	win_endgame(t_long *game);
+
+/* free */
+
+void	free_tlong(t_long *game);
 
 # define IMG_0 0
 # define IMG_1 1
@@ -66,6 +97,7 @@ int		parse_map(t_long *game, char *path);
 # define IMG_P2 4
 # define IMG_E1 5
 # define IMG_E2 6
+# define IMG_SIZE 64
 
 # ifndef K_ESC
 #  define K_ESC 53

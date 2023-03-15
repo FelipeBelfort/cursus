@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
+/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:01:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/14 15:20:50 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:08:06 by FelipeBelfo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,10 @@ t_long	*init_game(char *path)
 
 	game = ft_calloc(1, sizeof(t_long));
 	if (!game)
-		ft_error();
-	game->rows = 0;
-	game->cols = 0;
-	game->count_c = 0;
-	game->count_e = 0;
-	game->count_p = 0;
-	game->c = NULL;
-	game->e = NULL;
-	game->p = NULL;
-	game->map = NULL;
+		ft_error(NULL, 1);
 	error = parse_map(game, path);
 	if (error)
-		ft_error();
+		ft_error(game, error);
 	return (game);
 }
 
@@ -47,23 +38,21 @@ int	is_valid_file(char *namefile)
 	return (1);
 }
 
-// void	debug(t_long *game)
-// {
-// 	int i;
-
-// 	i = 0;
-// 	while (game->map[i++])
-// 		printf("%s\n", game->map[i]);
-// 	t_item *ptr = game->c;
-// 	i = 0;
-// 	while (ptr)
-// 	{
-// 		printf("i = %d   |   x = %zu   |   y = %zu\n", i++, ptr->x, ptr->y);
-// 		ptr = ptr->next;
-// 	}
-// }
-
-int	launch_game(t_long *game);
+int	launch_game(t_long *game)
+{
+	game->mlx = mlx_init();
+	game->win = mlx_new_window(game->mlx, game->cols * IMG_SIZE,
+			game->rows * IMG_SIZE, "so_long -> fbelfort");
+	apply_textures(game);
+	ft_putstr_fd("Welcome to so_long!!!\nMOVES : 000", 1);
+	game->p->img = game->text[IMG_P1];
+	game->e->img = game->text[IMG_E1];
+	display_maze(game);
+	mlx_hook(game->win, 17, 0, close_window, game);
+	mlx_key_hook(game->win, key_press, game);
+	mlx_loop(game->mlx);
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
@@ -72,11 +61,10 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (!is_valid_file(argv[1]))
-			ft_error();
+			ft_error(NULL, 2);
 		game = init_game(argv[1]);
-		// debug(game);
 		launch_game(game);
 	}
-	ft_putendl_fd("Error", 2);
+	ft_putendl_fd("Error -> Invalid number of arguments.", 2);
 	return (0);
 }

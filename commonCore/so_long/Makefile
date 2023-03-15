@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
+#    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/03/14 12:13:15 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/03/15 16:57:14 by FelipeBelfo      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ GCC				=	cc
 
 CFLAGS			=	-Wall -Wextra -Werror
 
-SRC				=	main.c parsing.c error.c display.c
+SRC				=	main.c parsing.c endgame.c \
+					display.c ft_free.c item_utils.c \
+					bool.c key_press.c create_map.c
 
 OBJS_DIR		=	objs/
 
