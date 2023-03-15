@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:45:18 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 17:15:44 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 18:57:34 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ int	check_map(t_long *game)
 	size_t	i;
 
 	i = 0;
-	if (!is_onlybrick(game->map[0]) || !is_onlybrick(game->map[game->rows - 1]))
-		return (7);
 	if (game->rows < 3 || game->cols < 3)
 		return (3);
 	if (game->count_c < 1 || game->count_p != 1 || game->count_e != 1)
@@ -64,6 +62,8 @@ int	check_map(t_long *game)
 		if (!is_closed(game->map[i]))
 			return (7);
 	}
+	if (!is_onlybrick(game->map[0]) || !is_onlybrick(game->map[game->rows - 1]))
+		return (7);
 	flood_map(game->map, game->p->y, game->p->x);
 	if (!is_empty(game->map))
 		return (8);

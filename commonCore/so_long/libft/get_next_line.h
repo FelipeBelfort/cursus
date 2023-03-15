@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 18:23:37 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/02/04 19:13:16 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:22:09 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

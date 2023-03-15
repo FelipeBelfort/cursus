@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:01:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 17:08:06 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:05:54 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int	is_valid_file(char *namefile)
 int	launch_game(t_long *game)
 {
 	game->mlx = mlx_init();
+	if (!game->mlx)
+		ft_error(game, 1);
 	game->win = mlx_new_window(game->mlx, game->cols * IMG_SIZE,
 			game->rows * IMG_SIZE, "so_long -> fbelfort");
 	apply_textures(game);
@@ -51,6 +53,8 @@ int	launch_game(t_long *game)
 	mlx_hook(game->win, 17, 0, close_window, game);
 	mlx_key_hook(game->win, key_press, game);
 	mlx_loop(game->mlx);
+	free(game->mlx);
+	free(game);
 	return (0);
 }
 
@@ -65,6 +69,7 @@ int	main(int argc, char **argv)
 		game = init_game(argv[1]);
 		launch_game(game);
 	}
-	ft_putendl_fd("Error -> Invalid number of arguments.", 2);
+	else
+		ft_putendl_fd("Error -> Invalid number of arguments.", 2);
 	return (0);
 }

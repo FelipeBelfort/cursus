@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 18:23:33 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/02/04 19:13:16 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:22:15 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@ size_t	ft_searcheol(char *str)
 {
 	int	i;
 
-	i = -1;
-	while (str[++i])
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
 	{
 		if (str[i] == '\n')
 			return (i + 1);
+		i++;
 	}
 	return (0);
 }

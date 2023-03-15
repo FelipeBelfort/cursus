@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 03:03:39 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/02/04 19:13:16 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:25:25 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,15 @@ static char	*ft_makeline(t_gnl **rfile, size_t len)
 
 static char	*ft_search_nl(int fd, t_gnl **rfile, int buf_c)
 {
-	char			buf[BUFFER_SIZE + 1];
+	char			*buf;
 	char			*line;
 	int				tmp_c;
 	int				ceol;
 
 	line = NULL;
-	buf[BUFFER_SIZE] = 0;
+	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!buf)
+		return (NULL);
 	while (!line)
 	{
 		tmp_c = read(fd, buf, BUFFER_SIZE);
@@ -93,6 +95,7 @@ static char	*ft_search_nl(int fd, t_gnl **rfile, int buf_c)
 				ft_lstaddnew(rfile, &buf[ceol], tmp_c - ceol);
 		}
 	}
+	free(buf);
 	return (line);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   endgame.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 16:55:18 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:04:53 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 */
 void	ft_error(t_long *game, int code)
 {
-	write(2, "Error -> ", 9);
+	ft_putstr_fd("Error -> ", 2);
 	if (code == 1)
 		perror("Failed memory allocation");
 	if (code == 2)
@@ -56,7 +56,12 @@ void	ft_error(t_long *game, int code)
 */
 int	close_window(void *param)
 {
-	free_tlong(param);
+	t_long	*game;
+
+	game = (t_long *)param;
+	// free_tlong(param);
+	mlx_clear_window(game->mlx, game->win);
+	mlx_destroy_window(game->mlx, game->win);
 	ft_putendl_fd("\nUnexpected end of the game.", 1);
 	exit(EXIT_SUCCESS);
 }
@@ -70,6 +75,8 @@ int	close_window(void *param)
 void	win_endgame(t_long *game)
 {
 	ft_printf("\nCongratulations! You finished with %d moves!\n", game->mv_count);
-	free_tlong(game);
+	// free_tlong(game);
+	mlx_clear_window(game->mlx, game->win);
+	mlx_destroy_window(game->mlx, game->win);
 	exit(EXIT_SUCCESS);
 }

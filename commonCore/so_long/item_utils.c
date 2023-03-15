@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   item_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 00:05:43 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 00:21:39 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 17:55:37 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	item_count(t_item *items)
 	int	i;
 
 	i = 0;
+	if (!items)
+		return (i);
 	while (items)
 	{
 		i++;

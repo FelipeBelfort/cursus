@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:07:02 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 16:59:59 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 18:50:04 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

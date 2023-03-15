@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 20:05:41 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 01:29:06 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/15 19:01:05 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	free_tlong(t_long *game)
 		mlx_clear_window(game->mlx, game->win);
 		mlx_destroy_window(game->mlx, game->win);
 	}
-	if (game->mlx)
-		free(game->mlx);
-	free(game);
+	// if (game->mlx)
+	// 	free(game->mlx);
+	// free(game);
 }

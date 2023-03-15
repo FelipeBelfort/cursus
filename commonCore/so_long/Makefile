@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+         #
+#    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/03/15 16:57:14 by FelipeBelfo      ###   ########.fr        #
+#    Updated: 2023/03/15 17:49:13 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	so_long
 
 GCC				=	cc
 
-CFLAGS			=	-Wall -Wextra -Werror
+CFLAGS			=	-Wall -Wextra -Werror -g
 
 SRC				=	main.c parsing.c endgame.c \
 					display.c ft_free.c item_utils.c \
