@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/16 21:42:46 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:35:32 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <signal.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <stdint.h>
 # include "libft/libft.h"
 
 # ifndef _XOPEN_SOURCE
