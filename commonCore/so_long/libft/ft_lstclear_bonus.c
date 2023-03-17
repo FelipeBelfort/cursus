@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 22:51:07 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/02/04 21:24:46 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/16 15:25:53 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	while (*lst && del)
 	{
 		ptr = (*lst)->next;
-		(*del)((*lst)->content);
+		if ((*lst)->content)
+			(*del)((*lst)->content);
 		free((*lst));
 		*lst = ptr;
 	}

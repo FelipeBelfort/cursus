@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:48:50 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 16:07:05 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/16 23:30:16 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 /**
  * @brief
  * It will fill the data about the
  * items 'C', 'P' and 'E' in the t_long based on the map.
 */
-void	fill_game(t_long *game)
+static void	fill_game(t_long *game)
 {
 	game->c = pick_items(game->map, 'C');
 	game->p = pick_items(game->map, 'P');

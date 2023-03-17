@@ -6,13 +6,13 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:01:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 19:05:54 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:47:04 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
-t_long	*init_game(char *path)
+static t_long	*init_game(char *path)
 {
 	t_long	*game;
 	int		error;
@@ -26,7 +26,7 @@ t_long	*init_game(char *path)
 	return (game);
 }
 
-int	is_valid_file(char *namefile)
+static int	is_valid_file(char *namefile)
 {
 	char	*extension;
 
@@ -38,7 +38,7 @@ int	is_valid_file(char *namefile)
 	return (1);
 }
 
-int	launch_game(t_long *game)
+static int	launch_game(t_long *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
@@ -52,9 +52,8 @@ int	launch_game(t_long *game)
 	display_maze(game);
 	mlx_hook(game->win, 17, 0, close_window, game);
 	mlx_key_hook(game->win, key_press, game);
+	mlx_loop_hook(game->mlx, endloop, game);
 	mlx_loop(game->mlx);
-	free(game->mlx);
-	free(game);
 	return (0);
 }
 
@@ -68,6 +67,7 @@ int	main(int argc, char **argv)
 			ft_error(NULL, 2);
 		game = init_game(argv[1]);
 		launch_game(game);
+		free_tlong(game);
 	}
 	else
 		ft_putendl_fd("Error -> Invalid number of arguments.", 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:50:10 by fbelfort          #+#    #+#             */
-/*   Updated: 2023/02/04 19:23:06 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/16 20:45:37 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct s_stack
+{
+	int				nb;
+	struct s_stack	*next;
+}				t_stack;
 
 typedef struct s_list
 {
@@ -87,8 +93,26 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-int		ft_printf(const char *str, ...);
+/* stack info */
 
-char	*get_next_line(int fd);
+int		stack_size(t_stack *stack);
+int		stack_max(t_stack *stack);
+int		stack_min(t_stack *stack);
+int		stack_get_i(t_stack *stack, int nb);
+
+/* stack manipulation */
+
+void	free_stack(t_stack **stack);
+t_stack	*stack_new(int nb);
+void	stack_addback(t_stack **stack, t_stack *new);
+t_stack	*stack_last(t_stack *stack);
+int		stack_swipe(t_stack **stack);
+int		stack_push(t_stack **from, t_stack **to);
+int		stack_rotate(t_stack **stack);
+int		stack_rev_rotate(t_stack **stack);
+t_stack	*stack_getnode(t_stack **stack, t_stack *node);
+void	stack_addfirst(t_stack **stack, t_stack *new);
+
+int		ft_printf(const char *str, ...);
 
 #endif

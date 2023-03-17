@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 21:48:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 16:56:32 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/17 00:12:52 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h>
 # include <fcntl.h>
 # include "libft.h"
 # include "mlx.h"
@@ -38,15 +37,10 @@ typedef struct s_long
 	t_item	*p;
 	t_item	*e;
 	t_item	*c;
-
-	int		bpp_txt[8];
-	int		sline_txt[8];
-	int		ed_txt[8];
+	int		endofgame;
 	int		h_txt[8];
 	int		w_txt[8];
-	char	*ptr_txt[8];
 	void	*text[8];
-
 	void	*mlx;
 	void	*win;
 }	t_long;
@@ -85,6 +79,7 @@ int		create_maptab(t_long *game, t_list *map);
 void	ft_error(t_long *game, int code);
 int		close_window(void *param);
 void	win_endgame(t_long *game);
+int		endloop(void *param);
 
 /* free */
 

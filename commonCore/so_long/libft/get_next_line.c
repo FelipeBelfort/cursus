@@ -6,11 +6,10 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 03:03:39 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 19:25:25 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/16 21:32:39 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
 #include "libft.h"
 
 static void	ft_lstaddnew(t_gnl **lst, char *content, size_t len)
@@ -40,44 +39,78 @@ static void	ft_lstaddnew(t_gnl **lst, char *content, size_t len)
 	}
 }
 
-static char	*ft_makeline(t_gnl **rfile, size_t len)
-{
-	char	*line;
-	t_gnl	*ptr;
-	size_t	i;
+// // static char	*manage_line(t_gnl **rfile, char *buf, int tmp_c, int buf_c)
+// // {
+// // 	char	*line;
+// // 	int		ceol;
 
-	i = 0;
-	ptr = *rfile;
-	if (!ptr)
-		return (NULL);
-	line = ft_calloc(sizeof(char), (len + 1));
-	if (!line)
-	{
-		ft_lstfree(rfile);
-		return (NULL);
-	}
-	while (ptr)
-	{
-		ft_memcpy(&line[i], ptr->content, ptr->len);
-		i += ptr->len;
-		ptr = ptr->next;
-	}
-	line[len] = 0;
-	ft_lstfree(rfile);
-	return (line);
-}
+// // 	line = NULL;
+// // 	ceol = ft_searcheol(buf);
+// // 	ft_printf("ceol => %d\n", ceol);
+// // 	// if (!tmp_c)
+// // 	// 	line = (ft_makeline(rfile, buf_c));
+// // 	if (!ceol)
+// // 	{
+// // 		ft_lstaddnew(rfile, buf, tmp_c);
+// // 	}
+// // 	else
+// // 	{
+// // 		ft_lstaddnew(rfile, buf, ceol);
+// // 		line = ft_makeline(rfile, buf_c - (tmp_c - ceol));
+// // 		ft_printf("line => %s\n", line);
+// // 		ft_printf("buf => %s\n", buf);
+// // 		if (ceol < tmp_c)
+// // 			ft_lstaddnew(rfile, &buf[ceol], tmp_c - ceol);
+// // 	}
+// // 	return (line);
+// // }
+
+// static char	*ft_search_nl(int fd, t_gnl **rfile, int buf_c)
+// {
+// 	char			*buf;
+// 	char			*line;
+// 	int				tmp_c;
+// 	int				ceol;
+
+// 	line = NULL;
+// 	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+// 	if (!buf)
+// 		return (NULL);
+// 	while (!line)
+// 	{
+// 		tmp_c = read(fd, buf, BUFFER_SIZE);
+// 		buf_c += tmp_c;
+// 		if (!tmp_c)
+// 			line = ft_makeline(rfile, buf_c);
+// 		// else
+// 		// 	line = manage_line(rfile, buf, tmp_c, buf_c);
+// 		// ft_memset(buf, 0, BUFFER_SIZE);
+// 		ceol = ft_searcheol(buf);
+// 		// if (!tmp_c)
+// 		// 	return (ft_makeline(rfile, buf_c));
+// 		if (!ceol)
+// 			ft_lstaddnew(rfile, buf, tmp_c);
+// 		else
+// 		{
+// 			ft_lstaddnew(rfile, buf, ceol);
+// 			line = ft_makeline(rfile, buf_c - (tmp_c - ceol));
+// 			if (ceol < tmp_c)
+// 				ft_lstaddnew(rfile, &buf[ceol], tmp_c - ceol);
+// 		}
+// 	}
+// 	free(buf);
+// 	return (line);
+// }
 
 static char	*ft_search_nl(int fd, t_gnl **rfile, int buf_c)
 {
-	char			*buf;
+	char			buf[BUFFER_SIZE + 1];
 	char			*line;
 	int				tmp_c;
 	int				ceol;
 
 	line = NULL;
-	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
-	if (!buf)
-		return (NULL);
+	buf[BUFFER_SIZE] = 0;
 	while (!line)
 	{
 		tmp_c = read(fd, buf, BUFFER_SIZE);
@@ -95,7 +128,6 @@ static char	*ft_search_nl(int fd, t_gnl **rfile, int buf_c)
 				ft_lstaddnew(rfile, &buf[ceol], tmp_c - ceol);
 		}
 	}
-	free(buf);
 	return (line);
 }
 

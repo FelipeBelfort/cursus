@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:50:38 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:48:01 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/16 19:41:02 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,15 @@ void	send_bits(int pid, char *message)
 
 int	main(int argc, char **argv)
 {
-	if (argc != 3)
+	int	pid;
+
+	if (argv[1])
+		pid = ft_atoi(argv[1]);
+	if (argv[1] && pid < 1)
+		ft_putendl_fd("Error: Invalid PID", 1);
+	if (argc != 3 || (argc == 3 && pid <= 0))
 		ft_putendl_fd("Error: Expected ./client <PID> <message>", 1);
 	else
-		send_bits(ft_atoi(argv[1]), argv[2]);
-
+		send_bits(pid, argv[2]);
 	return (0);
 }

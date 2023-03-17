@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bool.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:46:40 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 00:01:24 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/16 23:30:52 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 /**
  * @brief

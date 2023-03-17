@@ -6,11 +6,11 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 19:04:53 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/17 00:09:06 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 /**
  * @brief
@@ -26,25 +26,24 @@ void	ft_error(t_long *game, int code)
 {
 	ft_putstr_fd("Error -> ", 2);
 	if (code == 1)
-		perror("Failed memory allocation");
+		ft_putstr_fd("Failed memory allocation", 2);
 	if (code == 2)
-		perror("Invalid file. Attended a .ber");
+		ft_putstr_fd("Invalid file. Attended a .ber", 2);
 	if (code == 3)
-		perror("It needs to have at least 3 rows or columns");
+		ft_putstr_fd("It needs to have at least 3 rows or columns", 2);
 	if (code == 4)
-		perror("Wrong number of player, exit or colectible");
+		ft_putstr_fd("Wrong number of player, exit or colectible", 2);
 	if (code == 5)
-		perror("The map is not rectangular");
+		ft_putstr_fd("The map is not rectangular", 2);
 	if (code == 6)
-		perror("There are unknown characters in the map");
+		ft_putstr_fd("There are unknown characters in the map", 2);
 	if (code == 7)
-		perror("The map need to be closed by walls");
+		ft_putstr_fd("The map need to be closed by walls", 2);
 	if (code == 8)
-		perror("There is no valid path in the map");
+		ft_putstr_fd("There is no valid path in the map", 2);
 	if (code == 9)
-		perror("The map file seems broken");
-	else
-		perror(NULL);
+		ft_putstr_fd("The map file seems broken", 2);
+	ft_putchar_fd('\n', 2);
 	if (game)
 		free_tlong(game);
 	exit(EXIT_FAILURE);
@@ -59,11 +58,9 @@ int	close_window(void *param)
 	t_long	*game;
 
 	game = (t_long *)param;
-	// free_tlong(param);
-	mlx_clear_window(game->mlx, game->win);
-	mlx_destroy_window(game->mlx, game->win);
 	ft_putendl_fd("\nUnexpected end of the game.", 1);
-	exit(EXIT_SUCCESS);
+	game->endofgame = 1;
+	return (0);
 }
 
 /**
@@ -74,9 +71,16 @@ int	close_window(void *param)
 */
 void	win_endgame(t_long *game)
 {
-	ft_printf("\nCongratulations! You finished with %d moves!\n", game->mv_count);
-	// free_tlong(game);
-	mlx_clear_window(game->mlx, game->win);
-	mlx_destroy_window(game->mlx, game->win);
-	exit(EXIT_SUCCESS);
+	ft_printf("\n\nCongratulations!\n\nYou finished with %d moves!\n", game->mv_count);
+	game->endofgame = 1;
+}
+
+int	endloop(void *param)
+{
+	t_long	*game;
+
+	game = (t_long *)param;
+	if (game->endofgame)
+		mlx_loop_end(game->mlx);
+	return (0);
 }

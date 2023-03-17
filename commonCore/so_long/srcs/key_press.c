@@ -6,13 +6,13 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:07:02 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 18:50:04 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:30:03 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
-void	mv_manager(t_long *game, size_t target_x, size_t target_y, int key)
+static void	mv_manager(t_long *game, size_t target_x, size_t target_y, int key)
 {
 	if (game->map[game->p->y + target_y][game->p->x + target_x] != '1')
 	{

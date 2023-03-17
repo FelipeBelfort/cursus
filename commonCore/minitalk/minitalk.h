@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:51:56 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/11 23:32:34 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/16 21:42:46 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 
 # include <signal.h>
 # include <unistd.h>
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
-typedef struct s_stack
-{
-	unsigned char	c;
-	struct s_stack	*next;
-}				t_stack;
+# ifndef _XOPEN_SOURCE
+#  define _XOPEN_SOURCE 700
+# endif
+
+# ifndef _POSIX_C_SOURCE
+#  define _POSIX_C_SOURCE 200809L
+# endif
 
 #endif

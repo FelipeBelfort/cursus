@@ -6,7 +6,7 @@
 #    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/03/15 17:49:13 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/03/16 23:45:03 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,23 @@ GCC				=	cc
 
 CFLAGS			=	-Wall -Wextra -Werror -g
 
-SRC				=	main.c parsing.c endgame.c \
-					display.c ft_free.c item_utils.c \
-					bool.c key_press.c create_map.c
+FILES				=	main.c \
+					parsing.c \
+					endgame.c \
+					display.c \
+					ft_free.c \
+					item_utils.c \
+					bool.c \
+					key_press.c \
+					create_map.c
 
-OBJS_DIR		=	objs/
+SRCS_DIR		=	srcs
 
-OBJ				=	$(addprefix $(OBJS_DIR), $(SRC:.c=.o))
+OBJS_DIR		=	objs
+
+SRCS			=	$(addprefix $(SRCS_DIR)/, $(FILES))
+
+OBJ				=	$(patsubst %.c, $(OBJS_DIR)/%.o, $(FILES))
 
 RM				=	rm -fr
 
@@ -48,13 +58,16 @@ else
 	LIB_FLAG	=	-L$(LIBFT) -L$(MLX_PATH) -lft -lmlx_Linux -L/usr/lib -lm -lXext -lX11 -lz
 endif
 
-$(OBJS_DIR)%.o	: 	%.c $(HEADER) $(LIBFT_A) $(MLX_A)
+$(OBJS_DIR)/%.o	: 	$(SRCS_DIR)/%.c $(HEADER) $(LIBFT_A) $(MLX_A)
 			$(GCC) $(CFLAGS) $(DEFINE) -I/usr/include -Imlx -O3 -c $< -o $@
 
 all				:	$(NAME)
 
-$(NAME)			:  $(OBJS_DIR) $(OBJ) $(OBJ_MAIN) Makefile
-			$(GCC) -o $(NAME) $(OBJ) $(OBJ_MAIN) $(LIB_FLAG)
+# echo1	:
+# 			echo $(OBJ) => $(SRCS)
+
+$(NAME)			:  $(OBJS_DIR) $(OBJ) Makefile
+			$(GCC) -o $(NAME) $(OBJ) $(LIB_FLAG)
 
 $(LIBFT_A)		:	FORCE
 				$(MAKE) -C $(LIBFT)
@@ -68,6 +81,7 @@ $(OBJS_DIR)		:
 			mkdir -p $(OBJS_DIR)
 
 clean			:
+			# $(MAKE) -C $(MLX_PATH) clean
 			$(MAKE) -C $(LIBFT) clean
 			$(RM) $(OBJS_DIR)
 
@@ -76,4 +90,4 @@ fclean			:	clean
 
 re				:	fclean all
 
-.PHONY			:	all clean fclean re FORCE
+.PHONY			:	all clean fclean re FORCE $(NAME)

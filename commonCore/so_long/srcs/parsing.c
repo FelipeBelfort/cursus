@@ -6,11 +6,11 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:45:18 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 18:57:34 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:30:10 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 /**
  * @brief
@@ -22,7 +22,7 @@
  * @param int y position y of the player in the map
  * @param int x position x of the player in the map
 */
-void	flood_map(char **map, int y, int x)
+static void	flood_map(char **map, int y, int x)
 {
 	if (map[y][x] && map[y][x] != '1' && map[y][x] != 'b')
 	{
@@ -44,7 +44,7 @@ void	flood_map(char **map, int y, int x)
  * 0 in case of success
  * or the error code.
 */
-int	check_map(t_long *game)
+static int	check_map(t_long *game)
 {
 	size_t	i;
 
@@ -81,7 +81,7 @@ int	check_map(t_long *game)
  * @return
  * A pointer to the linked list
 */
-t_list	*get_map_lines(t_long *game, int fd)
+static t_list	*get_map_lines(t_long *game, int fd)
 {
 	t_list	*map;
 	t_list	*node;

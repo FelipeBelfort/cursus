@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: FelipeBelfort <FelipeBelfort@student.42    +#+  +:+       +#+        */
+/*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 14:39:27 by fbelfort          #+#    #+#             */
-/*   Updated: 2023/03/15 15:37:16 by FelipeBelfo      ###   ########.fr       */
+/*   Updated: 2023/03/16 23:30:40 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 /**
  * @brief
@@ -18,7 +18,7 @@
  * if there are no more 'C's and the player is in the exit's position
  * it will finish the game.
 */
-void	print_mv(t_long	*game)
+static void	print_mv(t_long	*game)
 {
 	if (game->mv_count > 0 && game->mv_count < 10)
 		ft_printf("\b%d", game->mv_count);
@@ -36,7 +36,7 @@ void	print_mv(t_long	*game)
  * It will put the image in the window based on the character of
  * the given position.
 */
-void	ft_put_img(t_long *game, size_t x, size_t y)
+static void	ft_put_img(t_long *game, size_t x, size_t y)
 {
 	int		(*putimg)();
 	void	*mlx;
@@ -89,55 +89,23 @@ void	display_maze(t_long *game)
  * t_long->text with the matching code.
  *
 */
-void	apply_textures2(t_long *g)
-{
-	char	*(*getdata)();
-	void	*(*xpm_to_img)();
-
-	getdata = mlx_get_data_addr;
-	xpm_to_img = mlx_xpm_file_to_image;
-	g->text[IMG_E2] = xpm_to_img(g->mlx, "./imgs/opened_grave.xpm",
-			&g->w_txt[IMG_E2], &g->h_txt[IMG_E2]);
-	g->ptr_txt[IMG_E2] = getdata(g->text[IMG_E2], &(g->bpp_txt[IMG_E2]),
-			&(g->sline_txt[IMG_E2]), &(g->ed_txt[IMG_E2]));
-	g->text[IMG_P1] = xpm_to_img(g->mlx, "./imgs/zombie_right.xpm",
-			&g->w_txt[IMG_P1], &g->h_txt[IMG_P1]);
-	g->ptr_txt[IMG_P1] = getdata(g->text[IMG_P1], &(g->bpp_txt[IMG_P1]),
-			&(g->sline_txt[IMG_P1]), &(g->ed_txt[IMG_P1]));
-	g->text[IMG_P2] = xpm_to_img(g->mlx, "./imgs/zombie_left.xpm",
-			&g->w_txt[IMG_P2], &g->h_txt[IMG_P2]);
-	g->ptr_txt[IMG_P2] = getdata(g->text[IMG_P2], &(g->bpp_txt[IMG_P2]),
-			&(g->sline_txt[IMG_P2]), &(g->ed_txt[IMG_P2]));
-	g->text[IMG_C] = xpm_to_img(g->mlx, "./imgs/brain.xpm",
-			&g->w_txt[IMG_C], &g->h_txt[IMG_C]);
-	g->ptr_txt[IMG_C] = getdata(g->text[IMG_C],
-			&(g->bpp_txt[IMG_C]), &(g->sline_txt[IMG_C]), &(g->ed_txt[IMG_C]));
-}
-
-/**
- * @brief
- * It takes the xpm files, creates the images and puts them in the
- * t_long->text with the matching code.
- *
-*/
 void	apply_textures(t_long *g)
 {
-	char	*(*getdata)();
 	void	*(*xpm_to_img)();
 
-	getdata = mlx_get_data_addr;
 	xpm_to_img = mlx_xpm_file_to_image;
 	g->text[IMG_0] = xpm_to_img(g->mlx, "./imgs/grass.xpm",
 			&g->w_txt[IMG_0], &g->h_txt[IMG_0]);
-	g->ptr_txt[IMG_0] = getdata(g->text[IMG_0],
-			&(g->bpp_txt[IMG_0]), &(g->sline_txt[IMG_0]), &(g->ed_txt[IMG_0]));
 	g->text[IMG_1] = xpm_to_img(g->mlx, "./imgs/stone.xpm",
 			&g->w_txt[IMG_1], &g->h_txt[IMG_1]);
-	g->ptr_txt[IMG_1] = getdata(g->text[IMG_1],
-			&(g->bpp_txt[IMG_1]), &(g->sline_txt[IMG_1]), &(g->ed_txt[IMG_1]));
 	g->text[IMG_E1] = xpm_to_img(g->mlx, "./imgs/closed_grave.xpm",
 			&g->w_txt[IMG_E1], &g->h_txt[IMG_E1]);
-	g->ptr_txt[IMG_E1] = getdata(g->text[IMG_E1], &(g->bpp_txt[IMG_E1]),
-			&(g->sline_txt[IMG_E1]), &(g->ed_txt[IMG_E1]));
-	apply_textures2(g);
+	g->text[IMG_E2] = xpm_to_img(g->mlx, "./imgs/opened_grave.xpm",
+			&g->w_txt[IMG_E2], &g->h_txt[IMG_E2]);
+	g->text[IMG_P1] = xpm_to_img(g->mlx, "./imgs/zombie_right.xpm",
+			&g->w_txt[IMG_P1], &g->h_txt[IMG_P1]);
+	g->text[IMG_P2] = xpm_to_img(g->mlx, "./imgs/zombie_left.xpm",
+			&g->w_txt[IMG_P2], &g->h_txt[IMG_P2]);
+	g->text[IMG_C] = xpm_to_img(g->mlx, "./imgs/brain.xpm",
+			&g->w_txt[IMG_C], &g->h_txt[IMG_C]);
 }

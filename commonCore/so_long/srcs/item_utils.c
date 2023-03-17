@@ -6,11 +6,11 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 00:05:43 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/15 17:55:37 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:31:11 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/so_long.h"
+#include "../includes/so_long.h"
 
 t_item	*item_newnode(int y, int x)
 {

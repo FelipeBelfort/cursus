@@ -6,7 +6,7 @@
 #    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/02/07 14:28:50 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/03/16 20:43:32 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,8 @@ SRC		=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 			ft_lstclear_bonus.c ft_lstdelone_bonus.c ft_lstiter_bonus.c \
 			ft_lstlast_bonus.c ft_lstmap_bonus.c \
 			ft_lstnew_bonus.c ft_lstsize_bonus.c \
-			get_next_line_utils.c get_next_line.c \
-			ft_parsechar.c ft_printf.c
+			ft_parsechar.c ft_printf.c stack_info.c \
+			stack_manip.c stack_operations.c
 
 OBJS_DIR	=	objs/
 
@@ -36,10 +36,10 @@ OBJ		=	$(addprefix $(OBJS_DIR), $(SRC:.c=.o))
 
 RM		=	rm -fr
 
-HEADER	=	$(NAME:.a=.h) get_next_line.h ft_printf.h
+HEADER	=	$(NAME:.a=.h) ft_printf.h
 
 $(OBJS_DIR)%.o:%.c $(HEADER)
-			$(GCC) $(CFLAGS) -I. -c $< -o $@ 
+			$(GCC) $(CFLAGS) -I. -c $< -o $@
 
 all		:	$(NAME)
 
