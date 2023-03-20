@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 13:07:02 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/16 23:30:03 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:01:31 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void	mv_manager(t_long *game, size_t target_x, size_t target_y, int key)
 		}
 	}
 	if (key == K_LEFT || key == K_A)
-	game->p->img = game->text[IMG_P2];
+		game->p->img = game->text[IMG_P2];
 	if (key == K_RIGHT || key == K_D)
-	game->p->img = game->text[IMG_P1];
+		game->p->img = game->text[IMG_P1];
 }
 
 /**

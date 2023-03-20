@@ -6,7 +6,7 @@
 #    By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 18:21:34 by FelipeBelfo       #+#    #+#              #
-#    Updated: 2023/03/16 23:45:03 by fbelfort         ###   ########.fr        #
+#    Updated: 2023/03/20 12:04:14 by fbelfort         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME			=	so_long
 
 GCC				=	cc
 
-CFLAGS			=	-Wall -Wextra -Werror -g
+CFLAGS			=	-Wall -Wextra -Werror
 
 FILES				=	main.c \
 					parsing.c \

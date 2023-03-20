@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/19 19:01:27 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:53:01 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,8 @@ void	ft_error(t_long *game, int code)
 		ft_putstr_fd("It needs to have at least 3 rows or columns", 2);
 	if (code == 4)
 		ft_putstr_fd("Wrong number of player, exit or colectible", 2);
-	if (code == 5)
-		ft_putstr_fd("The map is not rectangular", 2);
-	if (code == 6)
-		ft_putstr_fd("There are unknown characters in the map", 2);
-	if (code == 7)
-		ft_putstr_fd("The map need to be closed by walls", 2);
-	if (code == 8)
-		ft_putstr_fd("There is no valid path in the map", 2);
+	if (code >= 5 && code <= 8)
+		ft_putstr_fd("The map is not valid", 2);
 	if (code == 9)
 		ft_putstr_fd("The map file seems broken", 2);
 	ft_putchar_fd('\n', 2);

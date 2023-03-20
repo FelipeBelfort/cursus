@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 21:48:17 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/17 00:12:52 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:25:52 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_long
 
 int		is_empty(char **map);
 int		is_closed(char *line);
-int		is_forbidden(char *line);
+int		is_forbidden(char *line, int limit);
 int		is_onlybrick(char *line);
 
 /* items utils */

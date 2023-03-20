@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 20:45:18 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/16 23:30:10 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:29:52 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ static int	check_map(t_long *game)
 		return (3);
 	if (game->count_c < 1 || game->count_p != 1 || game->count_e != 1)
 		return (4);
-	while (game->map[++i] && i < game->rows - 1)
+	while (game->map[++i] && i < game->rows)
 	{
 		if (ft_strlen(game->map[i]) != game->cols)
 			return (5);
-		if (is_forbidden(game->map[i]))
+		if (is_forbidden(game->map[i], game->cols))
 			return (6);
 		if (!is_closed(game->map[i]))
 			return (7);

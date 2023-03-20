@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 23:46:40 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/16 23:30:52 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:51:44 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ int	is_onlybrick(char *line)
  * characters in the line.
  * Only '1', '0', 'E', 'P' and 'C' are allowed.
 */
-int	is_forbidden(char *line)
+int	is_forbidden(char *line, int limit)
 {
 	int	i;
 
 	i = -1;
-	while (line[++i])
+	while (line[++i] && i < limit)
 	{
 		if (!ft_strchr("10EPC", line[i]))
 			return (1);
