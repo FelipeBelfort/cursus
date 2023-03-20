@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 11:50:10 by fbelfort          #+#    #+#             */
-/*   Updated: 2023/03/16 20:20:04 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:41:32 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,14 @@ void	stack_addfirst(t_stack **stack, t_stack *new);
 
 int		ft_printf(const char *str, ...);
 
+/* get_next_line */
+
 char	*get_next_line(int fd);
+// size_t	ft_strchr_i(char *str, int c);
+// char	*ft_makeline(t_list **rfile);
+
+// # ifndef BUFFER_SIZE
+// #  define BUFFER_SIZE 42
+// # endif
 
 #endif

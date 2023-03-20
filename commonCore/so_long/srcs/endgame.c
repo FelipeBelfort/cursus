@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:32:15 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/17 00:09:06 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/19 19:01:27 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	close_window(void *param)
 */
 void	win_endgame(t_long *game)
 {
-	ft_printf("\n\nCongratulations!\n\nYou finished with %d moves!\n", game->mv_count);
+	ft_printf("\n\nCongratulations!\n");
+	ft_printf("\nYou finished with %d moves!\n", game->mv_count);
 	game->endofgame = 1;
 }
 
