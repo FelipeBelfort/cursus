@@ -58,7 +58,6 @@ int	key_press(int key, void *param)
 		mv_manager(game, 1, 0, key);
 	if (game->count_c == 0)
 		game->e->img = game->text[IMG_E2];
-	mlx_clear_window(game->mlx, game->win);
 	display_maze(game);
 	return (0);
 }

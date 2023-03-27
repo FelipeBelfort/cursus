@@ -14,8 +14,8 @@
 # define SO_LONG_H
 
 # include <fcntl.h>
-# include "libft.h"
-# include "mlx.h"
+# include "../libft/libft.h"
+# include "../minilibx-linux/mlx.h"
 
 typedef struct s_item
 {

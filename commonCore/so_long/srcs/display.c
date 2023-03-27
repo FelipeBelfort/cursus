@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/12 14:39:27 by fbelfort          #+#    #+#             */
-/*   Updated: 2023/03/16 23:30:40 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/23 17:40:14 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@
 */
 static void	print_mv(t_long	*game)
 {
+	if (game->endofgame)
+		return ;
 	if (game->mv_count > 0 && game->mv_count < 10)
 		ft_printf("\b%d", game->mv_count);
 	if (game->mv_count >= 10 && game->mv_count <= 99)
 		ft_printf("\b\b%d", game->mv_count);
 	if (game->mv_count >= 100)
 		ft_printf("\b\b\b%d", game->mv_count);
+	if (game->mv_count >= 1000)
+		ft_printf("\b\b\b\b%d", game->mv_count);
 	if (game->count_c == 0 && game->p->x == game->e->x
 		&& game->p->y == game->e->y)
 		win_endgame(game);

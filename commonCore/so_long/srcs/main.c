@@ -6,7 +6,7 @@
 /*   By: fbelfort <fbelfort@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 22:01:23 by FelipeBelfo       #+#    #+#             */
-/*   Updated: 2023/03/16 23:47:04 by fbelfort         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:02:26 by fbelfort         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	is_valid_file(char *namefile)
 	extension = ft_strrchr(namefile, '.');
 	if (!extension)
 		return (0);
-	if (ft_memcmp(extension, ".ber", 4))
+	if (ft_memcmp(extension, ".ber", 5))
 		return (0);
 	return (1);
 }
@@ -46,7 +46,7 @@ static int	launch_game(t_long *game)
 	game->win = mlx_new_window(game->mlx, game->cols * IMG_SIZE,
 			game->rows * IMG_SIZE, "so_long -> fbelfort");
 	apply_textures(game);
-	ft_putstr_fd("Welcome to so_long!!!\nMOVES : 000", 1);
+	ft_putstr_fd("Welcome to so_long!!!\nMOVES : 0000", 1);
 	game->p->img = game->text[IMG_P1];
 	game->e->img = game->text[IMG_E1];
 	display_maze(game);

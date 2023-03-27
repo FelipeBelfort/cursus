@@ -67,7 +67,6 @@ void	free_tlong(t_long *game)
 		mlx_destroy_image(game->mlx, game->text[i++]);
 	if (game->win)
 	{
-		mlx_clear_window(game->mlx, game->win);
 		mlx_destroy_window(game->mlx, game->win);
 		mlx_destroy_display(game->mlx);
 	}
